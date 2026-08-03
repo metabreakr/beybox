@@ -1,0 +1,25 @@
+For all designs I ask you to make, have them be beautiful, not cookie cutter. Make webpages that are fully featured and worthy for production.
+
+By default, this template supports JSX syntax with Tailwind CSS classes, React hooks, and Lucide React for icons. Do not install other packages for UI themes, icons, etc unless absolutely necessary or I request them.
+
+Use icons from `lucide-react` throughout, **except the four SVGs already provided in `public/assets/`**, which are final art — never generate, redraw or substitute them:
+- `logo.svg` — the app logo
+- `placeholder-blade.svg`, `placeholder-ratchet.svg`, `placeholder-bit.svg` — shown for any part with no photo, chosen by part class. They are drawn with `currentColor`, so set the colour on the parent element and the silhouette inherits it. Do not hard-code a fill.
+
+Import project modules with the `@/` path alias, which maps to `src/` (e.g. `@/components/Foo` == `src/components/Foo`), instead of deep relative paths like `../../components/Foo`.
+
+Beybox is a Beyblade X collection tracker and WBO-legal deck builder. Vite + React + TypeScript + Tailwind on Bolt Database.
+
+Scope: BX and UX parts only — three-part Beyblades (Blade + Ratchet + Bit). The CX custom line is out of scope.
+
+Users track the parts they own, assemble them into Beys, group three Beys into a deck, and get recommendations. Part data comes from a file I provide and must never be generated, inferred or corrected.
+
+Two field names matter everywhere: show **`display_name`** to users, never `name` — `name` is squashed uppercase like `IMPACTDRAKE`. And the assembly stack uses **`height_mm`** (real millimetres), never `hgt_stat` (a 0–100 rating that happens to be ten times it).
+
+Deck rules are advisory. The app reports whether a deck is tournament-legal; it never prevents one being built or saved.
+
+There are two tiers. Free users get the full catalogue, unlimited inventory, three decks, and scored suggestions from parts they already own. Beybox Pro is a one-time unlock that adds unlimited decks.
+
+**The app uses no file storage anywhere.** Every image is a static file already in `public/`. Never add an upload control, a file input, a storage bucket or an image URL field — not on any form, including the ones that create parts. A part with no photo shows the placeholder SVG for its class.
+
+I prefer simple, direct implementations over clever or highly abstracted ones.

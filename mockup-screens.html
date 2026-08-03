@@ -1,0 +1,1551 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Beybox — screen mockups</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Michroma&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--logo:url("public/assets/logo.svg");
+--display:'Michroma',sans-serif;--cond:'IBM Plex Sans Condensed',sans-serif;
+--sans:'IBM Plex Sans',sans-serif;--mono:'IBM Plex Mono',monospace;--mx:50vw;--my:40vh;--h:34px}
+[data-theme="dark"]{--s0:#13171D;--s0-glass:rgba(19,23,29,.62);--s1:#1C2027;--s2:#262B34;
+--s1h:#212630;--s2h:#2E343E;--line:#333A45;--line-h:#454E5C;--hover:#FFFFFF;
+--text:#EDF0F4;--dim:#A4ADBA;--faint:#7E8795;
+--ok:#A2FF1F;--ok-ink:#12200A;--info:#7BD6F5;--warn:#FFB020;--accent:#FF3BB3;--hot:#FF7A2F;
+--atk:#FF6B3D;--def:#5B8DEF;--sta:#14B88A;--bal:#9B7BFF;--page:#0D0F13;--dot:rgba(255,255,255,.22)}
+[data-theme="light"]{--s0:#F2F4F7;--s0-glass:rgba(242,244,247,.66);--s1:#FFFFFF;--s2:#E9ECF1;
+--s1h:#F7F9FB;--s2h:#DFE3EA;--line:#D5DAE2;--line-h:#B9C0CC;--hover:#14171C;
+--text:#0F1216;--dim:#4B5464;--faint:#6E7787;
+--ok:#478500;--ok-ink:#FFFFFF;--info:#0E7490;--warn:#9A6100;--accent:#B81478;--hot:#C2500B;
+--atk:#C4441A;--def:#2557C4;--sta:#0E7A5C;--bal:#6B3FC4;--page:#EAEDF2;--dot:rgba(0,0,0,.22)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--page);color:var(--text);font-family:var(--sans);font-size:14px;
+-webkit-font-smoothing:antialiased;padding:24px}
+.bg{position:fixed;inset:0;pointer-events:none;z-index:0}
+.glow{position:absolute;inset:0;background:
+radial-gradient(480px circle at var(--mx) var(--my),rgba(150,30,105,.14),transparent 60%),
+radial-gradient(640px circle at var(--mx) var(--my),rgba(40,90,120,.10),transparent 66%);
+transition:background .28s ease-out}
+.dots{position:absolute;inset:0;background-image:radial-gradient(circle,var(--dot) 1px,transparent 1px);
+background-size:24px 24px;-webkit-mask-image:radial-gradient(420px circle at var(--mx) var(--my),#000 5%,transparent 68%);
+mask-image:radial-gradient(420px circle at var(--mx) var(--my),#000 5%,transparent 68%);opacity:.5}
+
+/* ---------- shared button system ---------- */
+.b{height:var(--h);min-height:var(--h);line-height:1;display:inline-flex;align-items:center;gap:6px;padding:0 13px;
+font-family:var(--cond);font-weight:700;font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+border:1px solid var(--line);background:var(--s1);color:var(--dim);border-radius:3px;
+cursor:pointer;white-space:nowrap;transition:border-color .15s,color .15s,background .15s}
+.b:hover{border-color:var(--hover);color:var(--text)}
+.b.sm{height:26px;min-height:26px;padding:0 10px;font-size:10px;letter-spacing:.1em}
+.b.accent{border-color:var(--accent);color:var(--accent);background:var(--s1)}
+.b.accent:hover{border-color:var(--accent);background:var(--s2);color:var(--accent)}
+.b.go{border-color:var(--ok);background:var(--ok);color:var(--ok-ink)}
+.b.go:hover{border-color:var(--ok);background:var(--ok);color:var(--ok-ink);filter:brightness(1.08)}
+.b.hot:hover{border-color:var(--hot);color:var(--hot)}
+.b.own{border-color:var(--line);background:transparent;color:var(--dim)}
+.b.own:hover{border-color:var(--ok);color:var(--ok)}
+.b.own.set{background:var(--ok);border-color:var(--ok);color:var(--ok-ink)}
+.b.own.set:hover{background:var(--ok);border-color:var(--ok);color:var(--ok-ink);filter:brightness(1.08)}
+.b.grey{background:var(--s2);color:var(--dim);border-color:var(--line)}
+.b.grey:hover{border-color:var(--hover);color:var(--text)}
+.b.on{background:var(--s2);color:var(--text);border-color:var(--line-h)}
+.b.icon{padding:0;width:var(--h);justify-content:center}
+
+/* circular help */
+.help{width:19px;height:19px;flex:0 0 19px;border-radius:50%;border:1px solid var(--line);
+background:transparent;color:var(--faint);font-family:var(--sans);font-size:11px;font-weight:600;
+display:inline-flex;align-items:center;justify-content:center;cursor:help;position:relative;padding:0}
+.help:hover{border-color:var(--hover);color:var(--text)}
+.help:hover:after{content:attr(data-tip);position:absolute;bottom:calc(100% + 8px);right:-4px;
+width:212px;background:var(--s2);border:1px solid var(--line-h);border-radius:3px;padding:8px 10px;
+font-family:var(--sans);font-size:11.5px;font-weight:400;line-height:1.5;color:var(--text);
+text-align:left;text-transform:none;letter-spacing:0;z-index:20;box-shadow:0 6px 20px rgba(0,0,0,.35)}
+
+/* ---------- site chrome ---------- */
+.chrome{position:relative;z-index:2;max-width:1280px;margin:0 auto 16px;display:flex;gap:8px;
+align-items:center}
+.spacer{flex:1}
+.seg{display:flex;height:var(--h);border:1px solid var(--line);border-radius:3px;overflow:hidden;background:var(--s1)}
+.seg button{height:100%;border:0;background:transparent;color:var(--faint);cursor:pointer;
+display:flex;align-items:center;justify-content:center;padding:0 12px;
+font-family:var(--cond);font-weight:700;font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+transition:background .15s,color .15s}
+.seg button+button{border-left:1px solid var(--line)}
+.seg button:hover{color:var(--text)}
+.seg button.on{background:var(--s2);color:var(--text)}
+.seg.icons button{width:34px;padding:0}
+.seg.auth button.on{background:var(--ok);color:var(--ok-ink)}
+
+/* ---------- app shell ---------- */
+.app{position:relative;z-index:1;overflow:visible;max-width:1280px;margin:0 auto;border:1px solid var(--line);
+border-radius:5px;overflow:visible;background:var(--s0-glass);
+-webkit-backdrop-filter:blur(14px) saturate(140%);backdrop-filter:blur(14px) saturate(140%)}
+.screen{display:none}.screen.on{display:block}
+
+.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 18px;
+border-bottom:1px solid var(--line);background:var(--s1);border-radius:4px 4px 0 0;
+position:sticky;top:0;z-index:10}
+.brandbox{display:flex;align-items:center;gap:10px}
+.mark{width:30px;height:30px;flex-shrink:0;background:var(--logo) center/contain no-repeat}
+.wordmark{font-family:var(--display);font-size:15px;letter-spacing:.03em}
+nav{display:flex;gap:20px;font-family:var(--cond);font-weight:700;font-size:12px;
+letter-spacing:.14em;text-transform:uppercase}
+nav a{color:var(--dim);text-decoration:none;padding-bottom:3px;border-bottom:2px solid transparent;cursor:pointer}
+nav a:hover{color:var(--text)}
+nav a.on{color:var(--text);border-bottom-color:var(--accent)}
+.hdr-r{display:flex;align-items:center;gap:8px}
+.badge-pro{font-family:var(--cond);font-weight:700;font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+color:var(--ok);border:1px solid var(--ok);border-radius:3px;height:var(--h);display:inline-flex;
+align-items:center;padding:0 11px}
+
+.eyebrow{font-family:var(--cond);font-weight:700;font-size:10px;letter-spacing:.2em;
+text-transform:uppercase;color:var(--faint);margin-bottom:12px}
+.pad{padding:18px}
+
+/* ---------- filter bar ---------- */
+.filters{display:flex;gap:9px;align-items:center;flex-wrap:wrap;padding:12px 18px;
+border-bottom:1px solid var(--line);background:var(--s1)}
+.find{position:relative;flex:1;min-width:210px}
+.find input{width:100%;height:var(--h);background:var(--s0-glass);border:1px solid var(--line);
+border-radius:3px;padding:0 11px 0 32px;color:var(--text);font-family:var(--sans);font-size:13px;
+-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.find input::placeholder{color:var(--faint)}
+.find input:focus{outline:none;border-color:var(--hover)}
+.find svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--faint)}
+.ac{position:absolute;top:calc(100% + 5px);left:0;right:0;background:var(--s2);border:1px solid var(--line-h);
+border-radius:3px;z-index:15;overflow:hidden;box-shadow:0 8px 24px rgba(0,0,0,.4)}
+.ac div{padding:8px 11px;font-size:13px;color:var(--dim);cursor:pointer;display:flex;
+justify-content:space-between;align-items:center}
+.ac div:hover,.ac div.hl{background:var(--s1);color:var(--text)}
+.ac em{font-style:normal;font-family:var(--mono);font-size:10.5px;color:var(--faint)}
+.sel{height:var(--h);font-family:var(--mono);font-size:11px;background:var(--s0-glass);
+border:1px solid var(--line);color:var(--dim);border-radius:3px;padding:0 9px;cursor:pointer}
+.sel:hover{border-color:var(--hover);color:var(--text)}
+.chipset{display:flex;gap:6px}
+.filters .b,.filters .sel,.filters .chip{flex:0 0 auto}
+.chip{height:var(--h);display:inline-flex;align-items:center;font-family:var(--cond);font-weight:700;
+font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:0 11px;border:1px solid var(--line);
+background:transparent;color:var(--dim);border-radius:3px;cursor:pointer}
+.chip:hover{border-color:var(--hover);color:var(--text)}
+.chip.on{background:var(--s2);color:var(--text);border-color:var(--line-h)}
+.chip.atk.on{color:var(--atk);border-color:var(--atk)}
+.chip.def.on{color:var(--def);border-color:var(--def)}
+.chip.sta.on{color:var(--sta);border-color:var(--sta)}
+.chip.bal.on{color:var(--bal);border-color:var(--bal)}
+
+/* ---------- card grid ---------- */
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;padding:16px 18px}
+.grid.three{grid-template-columns:repeat(3,1fr)}
+.card{border:1px solid var(--line);border-radius:4px;background:var(--s1);overflow:hidden;
+display:flex;flex-direction:column;transition:border-color .15s,background .15s}
+.card:hover{background:var(--s1h);border-color:var(--line-h)}
+.thumb{height:100px;display:flex;align-items:center;justify-content:center;background:var(--s0-glass);
+border-bottom:1px solid var(--line);position:relative;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.badge{position:absolute;top:6px;right:6px;font-family:var(--cond);font-weight:700;font-size:8.5px;
+letter-spacing:.12em;text-transform:uppercase;padding:2px 5px;border-radius:2px;background:var(--s2)}
+.cbody{padding:9px 10px 10px;display:flex;flex-direction:column;flex:1}
+.cname{font-family:var(--cond);font-weight:700;font-size:14px;text-transform:uppercase;line-height:1.1}
+.csub{font-family:var(--mono);font-size:10px;color:var(--faint);margin-top:3px}
+.bars{margin-top:8px;display:flex;flex-direction:column;gap:3px}
+.bar{display:flex;align-items:center;gap:6px}
+.bar span{font-family:var(--mono);font-size:9px;color:var(--faint);width:20px;flex:0 0 20px}
+.track{flex:1;height:3px;background:var(--s2);border-radius:2px;overflow:hidden}
+.fill{height:100%;border-radius:2px}
+/* actions pinned to the bottom of every card — compact */
+.actions{margin-top:auto;padding-top:9px;border-top:1px solid var(--line);
+display:flex;align-items:center;gap:5px}
+.actions .b{flex:1;justify-content:center;height:26px;padding:0 8px;font-size:9.5px;letter-spacing:.1em}
+.actions .b.icon{flex:0 0 26px;width:26px;padding:0}
+.qty{display:flex;align-items:center;height:26px;border:1px solid var(--line);border-radius:3px;
+overflow:hidden;flex:0 0 auto}
+.qty button{width:22px;height:100%;border:0;background:var(--s2);color:var(--dim);cursor:pointer;
+font-size:13px;line-height:1;padding:0}
+.qty button:hover{color:var(--hover)}
+.qty i{font-family:var(--mono);font-style:normal;font-size:11px;width:20px;text-align:center;color:var(--text)}
+
+/* ---------- deck / builder ---------- */
+.deckgrid{display:grid;grid-template-columns:250px 1fr 310px}
+.col{padding:18px}.col+.col{border-left:1px solid var(--line)}
+.combo{border:1px solid var(--line);border-radius:3px;padding:11px;margin-bottom:8px;
+background:var(--s1);cursor:pointer}
+.combo:hover{border-color:var(--line-h)}
+.combo.ok{border-color:var(--ok)}
+.combo.bad{border-color:var(--warn)}
+.combo.on{background:var(--s2);box-shadow:inset 3px 0 0 var(--info)}
+.combo-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.combo-n{font-family:var(--mono);font-size:11px;color:var(--dim)}
+.dot{width:7px;height:7px;border-radius:50%}
+.pill{font-family:var(--mono);font-size:11px;padding:3px 7px;border-radius:2px;
+background:var(--s2);color:var(--text);border:1px solid transparent;display:inline-block;margin:2px 2px 0 0}
+.pill.clash{border-color:var(--warn);color:var(--warn)}
+.pill.custom{border-color:var(--bal);color:var(--bal)}
+.pill.ok{border-color:var(--ok);color:var(--ok)}
+.pill.warn{border-color:var(--warn);color:var(--warn)}
+.pill.info{border-color:var(--info);color:var(--info);background:transparent}
+.legal{margin-top:12px;padding:10px 11px;border-radius:3px;background:var(--s1);border:1px solid var(--ok)}
+.legal.bad{border-color:var(--warn)}
+.legal-t{font-family:var(--cond);font-weight:700;font-size:10px;letter-spacing:.16em;
+text-transform:uppercase;color:var(--ok);margin-bottom:5px}
+.legal.bad .legal-t{color:var(--warn)}
+.legal-b{font-size:12px;color:var(--dim);line-height:1.5}
+.cover{display:flex;gap:5px;margin-top:10px}
+.cv{flex:1;text-align:center;padding:6px 2px;border:1px solid var(--line);border-radius:3px;
+font-family:var(--cond);font-weight:700;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint)}
+.cv.has{color:var(--text);border-color:var(--line-h);background:var(--s1)}
+
+.stage{display:flex;gap:18px;padding-top:4px}
+.ruler{width:40px;position:relative;flex-shrink:0;height:300px}
+.tick{position:absolute;right:0;width:100%;display:flex;align-items:center;gap:5px;justify-content:flex-end}
+.tick i{display:block;width:8px;height:1px;background:var(--line)}
+.tick span{font-family:var(--mono);font-size:10px;color:var(--faint)}
+.stack{flex:1;display:flex;flex-direction:column;align-items:flex-start}
+.slot{width:100%;max-width:330px;display:flex;align-items:center;gap:13px;padding:4px;margin:-4px;
+border-radius:4px;cursor:pointer}
+.slot:hover{background:var(--s1)}
+.sthumb{width:88px;height:88px;border-radius:3px;background:var(--s0-glass);border:1px solid var(--line);
+flex:0 0 88px;display:flex;align-items:center;justify-content:center;
+-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.sthumb.rt{height:48px}.sthumb.bit{height:64px}
+.sthumb.empty{border-style:dashed}
+.role{font-family:var(--cond);font-weight:700;font-size:9.5px;letter-spacing:.2em;
+text-transform:uppercase;color:var(--faint);margin-bottom:3px}
+.pname{font-family:var(--cond);font-weight:700;font-size:19px;text-transform:uppercase;line-height:1.05}
+.psub{font-family:var(--mono);font-size:11px;color:var(--dim);margin-top:4px}
+.tb{display:inline-block;font-family:var(--cond);font-weight:700;font-size:9px;letter-spacing:.14em;
+text-transform:uppercase;padding:2px 7px;border-radius:2px;margin-top:6px;background:var(--s2)}
+.gap{width:100%;max-width:330px;display:flex}
+.gapline{width:88px;display:flex;justify-content:center}
+.gapline i{width:1px;background:var(--line);display:block;height:100%}
+.gapnote{padding-left:13px;display:flex;align-items:center;font-family:var(--mono);font-size:10px;color:var(--faint)}
+
+.stat{margin-bottom:10px}
+.stat-h{display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;margin-bottom:4px}
+.stat-l{color:var(--dim);letter-spacing:.1em}
+.spec{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);
+border:1px solid var(--line);border-radius:3px;margin:14px 0 18px}
+.spec div{background:var(--s1);padding:8px 10px}
+.spec .k{font-family:var(--cond);font-weight:600;font-size:9px;letter-spacing:.16em;
+text-transform:uppercase;color:var(--faint);margin-bottom:2px}
+.spec .v{font-family:var(--mono);font-size:14px;font-weight:500}
+
+/* ---------- recommendations (explicit widths so name/score never collide) ---------- */
+.rec{border:1px solid var(--line);border-left:2px solid var(--line-h);padding:11px 12px;
+background:var(--s1);margin-bottom:8px;display:block}
+.rec.best{border-left-color:var(--accent)}
+.rec.want{border-left-color:var(--info)}
+.rec-h{display:flex;flex-wrap:nowrap;align-items:baseline;justify-content:space-between;
+gap:12px;margin-bottom:7px;width:100%}
+.rec-n{flex:1 1 auto;min-width:0;font-family:var(--cond);font-weight:700;font-size:15px;
+text-transform:uppercase;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rec-s{flex:0 0 auto;font-family:var(--mono);font-size:13px;color:var(--accent);white-space:nowrap}
+.tag{flex:0 0 auto;font-family:var(--cond);font-weight:700;font-size:9px;letter-spacing:.14em;
+text-transform:uppercase;color:var(--info);border:1px solid var(--info);padding:1px 5px;
+border-radius:2px;white-space:nowrap}
+.why{list-style:none;margin:0;padding:0}
+.why li{font-size:12px;color:var(--dim);line-height:1.6;display:flex;gap:7px;align-items:flex-start}
+.why li:before{content:"\2192";color:var(--faint);flex:0 0 auto;line-height:1.6}
+
+.lock{border:1px solid var(--line);border-radius:4px;padding:22px 18px;text-align:center;background:var(--s1)}
+
+/* ---------- forms ---------- */
+.form{max-width:520px;margin:0 auto;padding:24px 18px}
+.field{margin-bottom:15px}
+.field label{display:block;font-family:var(--cond);font-weight:700;font-size:10px;
+letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin-bottom:5px}
+.field input,.field select{width:100%;height:var(--h);background:var(--s0-glass);border:1px solid var(--line);
+border-radius:3px;padding:0 11px;color:var(--text);font-family:var(--sans);font-size:13.5px}
+.field input:focus,.field select:focus{outline:none;border-color:var(--hover)}
+.field .hint{font-size:11.5px;color:var(--faint);margin-top:5px;line-height:1.5}
+.trio{display:grid;grid-template-columns:1fr 1fr 1fr;gap:9px}
+.note{border:1px solid var(--line);border-left:2px solid var(--info);background:var(--s1);
+padding:11px 13px;border-radius:3px;font-size:12.5px;color:var(--dim);line-height:1.6;margin-bottom:16px}
+.btnrow{display:flex;gap:7px;margin-top:14px}
+.btnrow .b{flex:1;justify-content:center}
+
+/* ---------- pagination ---------- */
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* No positioning anywhere in this block. A flex row per item cannot escape
+   its container, however an engine handles it. */
+
+
+
+
+
+
+
+/* ---------- plan tiers ----------
+   Rewritten as plainly as possible after five failed diagnoses. No flex on the
+   tier, no positioning, no descendant combinators beyond one level, no shared
+   class names. Each tier is a plain block with a border; children are ordinary
+   block-level elements in normal flow. Nothing here can escape its box. */
+.plans{display:flex;gap:14px;padding:16px;align-items:stretch;flex-wrap:wrap}
+.planbox{flex:1 1 260px;min-width:240px;box-sizing:border-box;
+border:1px solid var(--line);border-radius:4px;background:var(--s1);padding:16px}
+.planbox-free{border-color:var(--line-h)}
+.planbox-pro{border-color:var(--ok)}
+.plantitle{font-family:var(--cond);font-weight:700;font-size:15px;text-transform:uppercase;
+color:var(--text);margin:0 0 4px;padding:0;border:0;text-decoration:none;display:block}
+.planbox-pro .plantitle{color:var(--ok)}
+.planprice{font-family:var(--mono);font-size:21px;color:var(--text);margin:0 0 14px;display:block}
+.planprice span{font-size:11.5px;color:var(--faint)}
+.planlist{list-style:none;margin:0 0 16px;padding:0}
+.planlist li{font-size:12.5px;color:var(--dim);line-height:1.65;margin:0 0 5px;
+display:flex;gap:8px;align-items:baseline}
+.planlist li b{color:var(--text);font-weight:600}
+.planlist .off{color:var(--faint)}
+.planbox .b{width:100%;justify-content:center;margin:0}
+
+/* ---------- manage parts ---------- */
+.mp2{width:820px;max-width:calc(100vw - 40px);max-height:calc(100vh - 80px);
+border:1px solid var(--line-h);border-radius:6px;background:var(--s1);overflow:hidden;
+display:flex;flex-direction:column;box-shadow:0 30px 80px rgba(0,0,0,.55)}
+.mp2 .h{padding:14px 18px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px}
+.mp2 .h h3{font-family:var(--cond);font-weight:700;font-size:16px;text-transform:uppercase;flex:0 0 auto}
+.mp2 .h .grow{flex:1}
+.mp2 .body2{overflow:auto;flex:1}
+.ptab{width:100%;border-collapse:collapse;font-size:12.5px}
+.ptab th{position:sticky;top:0;background:var(--s2);text-align:left;font-family:var(--cond);
+font-weight:700;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);
+padding:9px 12px;border-bottom:1px solid var(--line);z-index:2}
+.ptab td{padding:8px 12px;border-bottom:1px solid var(--line);color:var(--dim);vertical-align:middle}
+.ptab tr:hover td{background:var(--s1h)}
+.ptab td b{color:var(--text);font-weight:500}
+.ptab input{width:100%;height:28px;background:var(--s0);border:1px solid transparent;border-radius:3px;
+padding:0 7px;color:var(--text);font-family:var(--sans);font-size:12.5px}
+.ptab input:hover{border-color:var(--line)}
+.ptab input:focus{outline:none;border-color:var(--info);background:var(--s0-glass)}
+.ptab input.num{width:52px;font-family:var(--mono);text-align:center}
+.ptab .act{display:flex;gap:5px;justify-content:flex-end}
+.mp2 .f{padding:12px 18px;border-top:1px solid var(--line);background:var(--s0-glass);
+display:flex;align-items:center;gap:8px}
+.mp2 .f .grow{flex:1}
+
+/* ---------- account ---------- */
+.acct{display:grid;grid-template-columns:190px 1fr;min-height:520px}
+.aside{border-right:1px solid var(--line);padding:16px 0;background:var(--s1)}
+.aside a{display:flex;align-items:center;gap:9px;padding:9px 16px;font-family:var(--cond);
+font-weight:700;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);
+cursor:pointer;border-left:2px solid transparent}
+.aside a:hover{color:var(--text);background:var(--s1h)}
+.aside a.on{color:var(--text);border-left-color:var(--accent);background:var(--s2)}
+.aside .sec{padding:14px 16px 7px;font-family:var(--cond);font-weight:700;font-size:9px;
+letter-spacing:.2em;text-transform:uppercase;color:var(--faint)}
+.amain{padding:20px 22px}
+.panel{border:1px solid var(--line);border-radius:4px;background:var(--s1);margin-bottom:16px}
+.panel .ph2{padding:13px 16px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:12px}
+.panel .ph2 h4{font-family:var(--cond);font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.06em}
+.panel .ph2 .grow{flex:1}
+.panel .pb{padding:16px}
+.frow{display:grid;grid-template-columns:150px 1fr;gap:14px;align-items:center;padding:9px 0;
+border-bottom:1px solid var(--line)}
+.frow:last-child{border-bottom:0}
+.frow label{font-family:var(--cond);font-weight:700;font-size:10px;letter-spacing:.14em;
+text-transform:uppercase;color:var(--faint)}
+.frow input,.frow select{width:100%;height:var(--h);background:var(--s0-glass);border:1px solid var(--line);
+border-radius:3px;padding:0 11px;color:var(--text);font-family:var(--sans);font-size:13.5px}
+.frow .val{font-size:13.5px;color:var(--text)}
+.frow .val small{display:block;font-size:11.5px;color:var(--faint);margin-top:3px}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.badge2{font-family:var(--cond);font-weight:700;font-size:9px;letter-spacing:.14em;text-transform:uppercase;
+padding:3px 8px;border-radius:3px;border:1px solid currentColor}
+.utable{width:100%;border-collapse:collapse;font-size:13px}
+.utable th{text-align:left;font-family:var(--cond);font-weight:700;font-size:9.5px;letter-spacing:.16em;
+text-transform:uppercase;color:var(--faint);padding:9px 12px;border-bottom:1px solid var(--line)}
+.utable td{padding:10px 12px;border-bottom:1px solid var(--line);color:var(--dim)}
+.utable tr:last-child td{border-bottom:0}
+.utable td b{color:var(--text);font-weight:500}
+.utable .act{display:flex;gap:6px;justify-content:flex-end}
+.stats3{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line)}
+.stats3 div{background:var(--s1);padding:14px 16px}
+.stats3 .n{font-family:var(--mono);font-size:22px;color:var(--text)}
+.stats3 .l{font-family:var(--cond);font-weight:700;font-size:9px;letter-spacing:.16em;
+text-transform:uppercase;color:var(--faint);margin-top:4px}
+.danger{border-color:var(--warn)}
+.danger .ph2 h4{color:var(--warn)}
+
+.cmp{width:660px;max-width:calc(100vw - 40px);border:1px solid var(--line-h);border-radius:6px;
+background:var(--s1);overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.55)}
+.cmp .ch{padding:16px 20px;border-bottom:1px solid var(--line);display:flex;align-items:flex-start;gap:12px}
+.cmp .ch h3{font-family:var(--cond);font-weight:700;font-size:17px;text-transform:uppercase;margin-bottom:4px}
+.cmp .ch p{font-size:12.5px;color:var(--dim);line-height:1.55}
+.cmp .rank{margin-left:auto;flex:0 0 auto;text-align:right}
+.cmp .rank b{display:block;font-family:var(--mono);font-size:19px;color:var(--accent)}
+.cmp .rank span{font-family:var(--cond);font-weight:700;font-size:9px;letter-spacing:.14em;
+text-transform:uppercase;color:var(--faint)}
+.cols{display:grid;grid-template-columns:1fr 40px 1fr}
+.col2{padding:15px 18px}
+.col2.now{border-right:1px solid var(--line)}
+.col2 .lbl{font-family:var(--cond);font-weight:700;font-size:9.5px;letter-spacing:.18em;
+text-transform:uppercase;color:var(--faint);margin-bottom:11px}
+.col2.next .lbl{color:var(--accent)}
+.prow{display:flex;align-items:center;gap:9px;padding:7px 0;border-bottom:1px solid var(--line)}
+.prow:last-of-type{border-bottom:0}
+.prow .pz{width:30px;height:30px;flex:0 0 30px;border:1px solid var(--line);border-radius:3px;
+background:var(--s0);display:flex;align-items:center;justify-content:center}
+.prow .nm{flex:1;min-width:0;font-family:var(--cond);font-weight:700;font-size:12.5px;text-transform:uppercase}
+.prow .nm em{display:block;font-style:normal;font-family:var(--mono);font-size:9.5px;
+color:var(--faint);text-transform:none;font-weight:400;margin-top:2px}
+.prow.chg{background:rgba(255,59,179,.07);margin:0 -8px;padding:7px 8px;border-radius:3px}
+.prow.chg .nm{color:var(--accent)}
+.arrows{display:flex;flex-direction:column;align-items:center;justify-content:center;
+gap:26px;color:var(--faint);padding-top:34px}
+.deltas{padding:14px 18px;border-top:1px solid var(--line);background:var(--s0-glass);
+display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.dl{display:flex;flex-direction:column;gap:5px}
+.dl .k{font-family:var(--cond);font-weight:700;font-size:9px;letter-spacing:.16em;
+text-transform:uppercase;color:var(--faint)}
+.dl .v{font-family:var(--mono);font-size:14px;display:flex;align-items:baseline;gap:7px}
+.dl .v i{font-style:normal;font-size:11.5px}
+.dl .v i.up{color:var(--ok)}.dl .v i.dn{color:var(--warn)}
+.dl .tr{height:3px;background:var(--s2);border-radius:2px;overflow:hidden;position:relative}
+.dl .tr b{position:absolute;left:0;top:0;bottom:0;border-radius:2px;background:var(--dim)}
+.dl .tr u{position:absolute;top:0;bottom:0;border-radius:2px;text-decoration:none}
+.why2{padding:13px 18px;border-top:1px solid var(--line)}
+.why2 li{font-size:12.5px;color:var(--dim);line-height:1.65;display:flex;gap:8px;list-style:none}
+.why2 li:before{content:"\2192";color:var(--accent);flex:0 0 auto}
+.cmp .cf{display:flex;gap:8px;padding:13px 18px;border-top:1px solid var(--line);background:var(--s2);align-items:center}
+.cmp .cf .b{height:var(--h)}
+.cmp .cf .grow{flex:1}
+
+/* ---------- deck editor ---------- */
+.dslots{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;padding:18px 18px 4px}
+.dslot{border:1px solid var(--line);border-radius:4px;background:var(--s1);display:flex;
+flex-direction:column;min-height:260px}
+.dslot.ok{border-color:var(--ok)}.dslot.attn{border-color:var(--warn)}
+.dslot.empty{border-style:dashed;background:transparent;align-items:center;justify-content:center;
+gap:12px;padding:24px;text-align:center}
+.dslot .dh{display:flex;align-items:center;justify-content:space-between;padding:9px 11px;
+border-bottom:1px solid var(--line);background:var(--s2);border-radius:3px 3px 0 0}
+.dslot .dn{font-family:var(--mono);font-size:11px;color:var(--dim)}
+.dparts{display:flex;align-items:center;gap:8px;padding:12px 11px;border-bottom:1px solid var(--line)}
+.dparts .pz{width:40px;height:40px;flex:0 0 40px;border:1px solid var(--line);border-radius:3px;
+background:var(--s0-glass);display:flex;align-items:center;justify-content:center}
+.dparts .plus{color:var(--faint);font-family:var(--mono);font-size:12px}
+.dbody{padding:11px;display:flex;flex-direction:column;flex:1}
+.dname{font-family:var(--cond);font-weight:700;font-size:15px;text-transform:uppercase;line-height:1.15}
+.dsub{font-family:var(--mono);font-size:10.5px;color:var(--faint);margin-top:3px;margin-bottom:9px}
+.dstat{display:flex;gap:10px;font-family:var(--mono);font-size:10.5px;color:var(--dim);margin-bottom:9px}
+.dstat b{font-weight:500;color:var(--text)}
+
+.emptywrap[hidden]{display:none}
+body.demo-empty .grid,body.demo-empty .selbar,
+body.demo-empty .prompt,body.demo-empty .dslots{display:none!important}
+body.demo-empty .emptywrap{display:block!important}
+body.demo-empty .find input{border-color:var(--info);box-shadow:0 0 0 3px rgba(123,214,245,.16)}
+body.demo-empty .find input::placeholder{color:var(--info)}
+/* ---------- empty states ---------- */
+.empty-state{display:flex;flex-direction:column;align-items:center;justify-content:center;
+gap:14px;padding:70px 24px;text-align:center}
+.empty-state .ei{width:60px;height:60px;border:1px dashed var(--line-h);border-radius:6px;
+display:flex;align-items:center;justify-content:center;margin-bottom:4px}
+.empty-state h4{font-family:var(--cond);font-weight:700;font-size:20px;text-transform:uppercase;
+letter-spacing:.01em}
+.empty-state p{font-size:13.5px;color:var(--dim);max-width:400px;line-height:1.6}
+.empty-state .b{height:42px;padding:0 22px;font-size:12px;margin-top:4px}
+.find.pulse input{border-color:var(--info);box-shadow:0 0 0 3px rgba(123,214,245,.16)}
+
+/* ---------- add-to-deck modal ---------- */
+.sheet{width:440px;max-width:calc(100vw - 40px);border:1px solid var(--line-h);border-radius:6px;
+background:var(--s1);overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.55)}
+.sheet .sh{padding:15px 18px;border-bottom:1px solid var(--line)}
+.sheet .sh h3{font-family:var(--cond);font-weight:700;font-size:16px;text-transform:uppercase;margin-bottom:4px}
+.sheet .sh p{font-size:12.5px;color:var(--dim)}
+.sheet .sl2{max-height:250px;overflow:auto}
+.dkrow{display:flex;align-items:center;gap:11px;padding:11px 18px;border-bottom:1px solid var(--line);
+cursor:pointer;transition:background .15s}
+.dkrow:hover{background:var(--s1h)}
+.dkrow .nm{flex:1;min-width:0}
+.dkrow .nm b{display:block;font-family:var(--cond);font-weight:700;font-size:13px;text-transform:uppercase}
+.dkrow .nm span{font-family:var(--mono);font-size:10.5px;color:var(--faint)}
+.dkrow.full .nm span{color:var(--warn)}
+.sheet .sf{display:flex;gap:8px;padding:13px 18px;border-top:1px solid var(--line);background:var(--s0-glass)}
+.sheet .sf .b{flex:1;justify-content:center}
+
+/* ---------- landing preview stack ---------- */
+.shots{display:grid;grid-template-columns:2fr 1fr;gap:34px;align-items:center;padding:34px}
+.deckwrap{position:relative;height:340px;padding:0 34px 34px 0}
+.shot{position:absolute;top:0;left:0;width:calc(100% - 34px);height:310px;margin:0;cursor:pointer;
+transition:transform .55s cubic-bezier(.2,.75,.3,1),opacity .45s ease,filter .45s ease}
+.shot[data-pos="0"]{transform:translate(0,0);z-index:3;opacity:1;filter:none}
+.shot[data-pos="1"]{transform:translate(17px,15px);z-index:2;opacity:.62;filter:saturate(.55)}
+.shot[data-pos="2"]{transform:translate(34px,30px);z-index:1;opacity:.36;filter:saturate(.35)}
+.shot[data-pos="1"]:hover,.shot[data-pos="2"]:hover{opacity:.85;filter:none}
+.mini{position:relative;border:1px solid var(--line);border-radius:5px;background:var(--s1);
+overflow:hidden;height:100%;display:flex;flex-direction:column;box-shadow:0 16px 40px rgba(0,0,0,.42)}
+
+.shotside{display:flex;flex-direction:column;justify-content:center;min-height:310px}
+.copywrap{position:relative;min-height:236px}
+.scopy{position:absolute;inset:0;opacity:0;pointer-events:none;transition:opacity .4s ease}
+.scopy.on{opacity:1;pointer-events:auto}
+.ctag{display:inline-flex;align-items:center;height:24px;padding:0 10px;border:1px solid var(--line-h);
+border-radius:3px;font-family:var(--cond);font-weight:700;font-size:9.5px;letter-spacing:.18em;
+text-transform:uppercase;color:var(--dim);margin-bottom:16px}
+.scopy h3{font-family:var(--cond);font-weight:700;font-size:30px;line-height:1.14;
+letter-spacing:-.005em;text-transform:none;margin-bottom:14px;color:var(--info)}
+.scopy p{font-size:14.5px;line-height:1.65;color:var(--dim);margin:0}
+.shotnav{display:flex;align-items:center;gap:8px;margin-top:22px}
+.shotnav button{width:32px;height:32px;padding:0;justify-content:center}
+.shotnav .pos{font-family:var(--mono);font-size:11.5px;color:var(--faint);margin-left:4px}
+/* ---------- landing ---------- */
+.hero{padding:56px 18px 44px;text-align:center;position:relative;overflow:hidden;
+border-bottom:1px solid var(--line)}
+.herologo{width:112px;height:112px;margin:0 auto 16px;background:var(--logo) center/contain no-repeat;
+position:relative;z-index:2}
+.herovid{position:absolute;inset:0;overflow:hidden;z-index:0;border-radius:4px 4px 0 0}
+.herovid video{width:100%;height:100%;object-fit:cover;opacity:.44;filter:saturate(115%)}
+.herovid:after{content:"";position:absolute;inset:0;
+background:linear-gradient(to bottom,rgba(19,23,29,.46) 0%,rgba(19,23,29,.76) 62%,var(--s0) 100%)}
+[data-theme="light"] .herovid video{opacity:.30}
+[data-theme="light"] .herovid:after{background:linear-gradient(to bottom,
+rgba(242,244,247,.6) 0%,rgba(242,244,247,.86) 62%,var(--s0) 100%)}
+.hero > *:not(.herovid){position:relative;z-index:2}
+.herowm{font-family:var(--display);font-size:20px;letter-spacing:.1em;margin-bottom:22px}
+.hero h1{font-family:var(--cond);font-weight:700;font-size:44px;line-height:1.08;
+letter-spacing:-.01em;margin-bottom:16px}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero p{font-size:16px;color:var(--dim);max-width:560px;margin:0 auto 26px;line-height:1.6}
+.herobtn{display:flex;gap:9px;justify-content:center}
+.herobtn .b{height:40px;padding:0 20px;font-size:12px}
+
+
+
+
+
+
+
+
+
+.mini .bar{display:flex;align-items:center;gap:5px;padding:7px 9px;background:var(--s2);
+border-bottom:1px solid var(--line)}
+.mini .bar i{width:7px;height:7px;border-radius:50%;background:var(--line-h);display:block;flex:0 0 7px}
+.mnav{display:flex;align-items:center;gap:11px;padding:6px 10px;border-bottom:1px solid var(--line);
+background:var(--s1);font-family:var(--cond);font-weight:700;font-size:7.5px;letter-spacing:.14em;
+text-transform:uppercase;color:var(--text)}
+.mnav .dim{color:var(--faint)}
+.mnav .grow{flex:1}
+.mnav .tagp{color:var(--ok);border:1px solid var(--ok);border-radius:2px;padding:1px 4px}
+.mfilt{display:flex;align-items:center;gap:6px;padding:7px 10px;border-bottom:1px solid var(--line);background:var(--s0)}
+.mfilt .grow{flex:1}
+.mfind{flex:0 0 40%;border:1px solid var(--line);border-radius:2px;padding:3px 6px;
+font-size:7px;color:var(--faint);background:var(--s1)}
+.mpil{border:1px solid var(--line);border-radius:2px;padding:3px 6px;font-family:var(--cond);
+font-weight:700;font-size:7px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
+.mpil.go{background:var(--ok);border-color:var(--ok);color:var(--ok-ink)}
+.mcov{display:flex;gap:3px;margin-top:6px}
+.mcov i{flex:1;text-align:center;font-style:normal;font-family:var(--cond);font-weight:700;
+font-size:6px;letter-spacing:.08em;padding:2px 0;border:1px solid var(--line);border-radius:2px;color:var(--faint)}
+.mcov i.on{color:var(--c);border-color:var(--c)}
+.mwarn{margin-top:6px;border-left:2px solid var(--warn);background:var(--s2);padding:4px 6px;
+font-size:6.5px;line-height:1.4;color:var(--dim)}
+.mtag{margin-top:auto;padding-top:6px;font-family:var(--cond);font-weight:700;font-size:6.5px;
+letter-spacing:.12em;text-transform:uppercase;color:var(--faint)}
+.mtag.ok{color:var(--ok)}.mtag.warn{color:var(--warn)}
+.mcard{display:flex;flex-direction:column}
+.mini .bar b{font-family:var(--cond);font-weight:700;font-size:8.5px;letter-spacing:.16em;
+text-transform:uppercase;color:var(--faint);margin-left:5px}
+.mini .in{padding:12px;display:flex;flex-direction:column;gap:8px;flex:1;overflow:hidden;
+justify-content:center}
+.mrow{display:flex;gap:6px}
+.mcard{flex:1;border:1px solid var(--line);border-radius:3px;background:var(--s0);padding:7px}
+.mcard.ok{border-color:var(--ok)}.mcard.warn{border-color:var(--warn)}.mcard.info{border-color:var(--info)}
+.mt{font-family:var(--cond);font-weight:700;font-size:8px;letter-spacing:.1em;text-transform:uppercase;
+color:var(--text);margin-bottom:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mp{display:inline-block;font-family:var(--mono);font-size:6.5px;padding:1px 4px;border-radius:2px;
+background:var(--s2);color:var(--dim);margin:0 2px 2px 0}
+.mp.w{border:1px solid var(--warn);color:var(--warn)}
+.mb{height:2px;border-radius:1px;background:var(--s2);margin-bottom:3px;overflow:hidden}
+.mb i{display:block;height:100%;border-radius:1px}
+.mstack{display:flex;flex-direction:column;align-items:center;gap:0;padding:4px 0;flex:1;justify-content:center}
+.mstack .pz{width:38px;border:1px solid var(--line);border-radius:3px;background:var(--s0);
+display:flex;align-items:center;justify-content:center}
+.mstack .ln{width:1px;background:var(--line)}
+.mgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;align-content:center;flex:1}
+.mg{border:1px solid var(--line);border-radius:3px;background:var(--s0);padding:9px 5px;
+display:flex;flex-direction:column;align-items:center;gap:4px}
+.mg.ok{border-color:var(--ok)}.mg.info{border-color:var(--info)}
+.ph{border:1px solid var(--line);border-radius:4px;background:var(--s0-glass);height:200px;
+display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;
+-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.ph.tall{height:250px}
+.ph:before{content:"";position:absolute;inset:0;
+background-image:radial-gradient(circle,var(--dot) 1px,transparent 1px);background-size:20px 20px;opacity:.5}
+.ph span{position:relative;font-family:var(--cond);font-weight:700;font-size:11px;letter-spacing:.16em;
+text-transform:uppercase;color:var(--faint);background:var(--s1);padding:6px 12px;
+border:1px solid var(--line);border-radius:3px}
+
+
+
+
+
+
+
+
+
+
+.feat{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border-top:1px solid var(--line)}
+.feat div{background:var(--s0);padding:22px 20px}
+.feat h3{font-family:var(--cond);font-weight:700;font-size:14px;text-transform:uppercase;
+letter-spacing:.04em;margin-bottom:8px}
+.feat p{font-size:12.5px;color:var(--dim);line-height:1.65}
+
+.ovl{position:fixed;inset:0;z-index:60;display:flex;align-items:center;justify-content:center;
+background:rgba(8,10,14,.72);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.ovl[hidden]{display:none}
+[data-theme="light"] .ovl{background:rgba(200,206,215,.7)}
+.intro{width:520px;max-width:calc(100vw - 40px);border:1px solid var(--line-h);border-radius:6px;
+background:var(--s1);overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.55)}
+.intro .art{height:170px;background:var(--s0-glass);border-bottom:1px solid var(--line);
+display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.intro .art:before{content:"";position:absolute;inset:0;
+background-image:radial-gradient(circle,var(--dot) 1px,transparent 1px);background-size:20px 20px;opacity:.45}
+.intro .art > *{position:relative}
+.intro .body{padding:20px;min-height:186px;display:flex;flex-direction:column}
+.intro .step{font-family:var(--mono);font-size:10.5px;color:var(--faint);letter-spacing:.1em;margin-bottom:7px}
+.intro h3{font-family:var(--cond);font-weight:700;font-size:21px;text-transform:uppercase;
+letter-spacing:.01em;margin-bottom:9px}
+.intro p{font-size:13.5px;color:var(--dim);line-height:1.6}
+.intro .dots2{display:flex;gap:6px;margin:auto 0 0}
+.intro .dots2 i{width:7px;height:7px;border-radius:50%;background:var(--line-h);display:block;cursor:pointer}
+.intro .dots2 i.on{background:var(--accent);width:20px;border-radius:4px}
+.intro .foot2{display:flex;align-items:center;gap:12px;padding:13px 20px;
+border-top:1px solid var(--line);background:var(--s0-glass)}
+.intro .foot2 .grow{flex:1}
+.chk{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--dim);cursor:pointer}
+.chk .box{width:17px;height:17px;border:1px solid var(--line-h);border-radius:3px;background:var(--s0);
+display:flex;align-items:center;justify-content:center;color:transparent;flex:0 0 17px}
+.chk.on .box{background:var(--ok);border-color:var(--ok);color:var(--ok-ink)}
+.foot{padding:9px 18px;border-top:1px solid var(--line);background:var(--s1);
+display:flex;justify-content:space-between;align-items:center;gap:12px;
+font-family:var(--mono);font-size:11px;color:var(--faint);border-radius:0 0 4px 4px}
+.foot-l,.foot-r{display:flex;align-items:center;gap:8px}
+.stamp{position:fixed;bottom:8px;right:10px;z-index:99;font-family:var(--mono);
+font-size:10px;color:var(--faint);background:var(--s1);border:1px solid var(--line);
+border-radius:3px;padding:3px 8px;opacity:.55;pointer-events:none}
+.cap{position:relative;z-index:1;max-width:1280px;margin:14px auto 0;font-size:12px;color:var(--faint);line-height:1.6}
+@media (prefers-reduced-motion:reduce){.glow,.dots{transition:none}
+  }
+
+/* ---------- card outline semantics (D133, revised D136) ---------- */
+.card.identity{border-color:var(--info)}  /* blades — the part that names the Bey */
+.card.picked{border-color:var(--ok);background:var(--s1h)}  /* selected */
+.card.active{border-color:var(--ok)}      /* in use — in a deck, legal */
+.card.marked{border-color:var(--info)}    /* informational — built but idle */
+.card.attn{border-color:var(--warn)}      /* needs attention — not legal, banned */
+
+/* ---------- selection ---------- */
+.ck{position:absolute;top:6px;left:6px;width:19px;height:19px;border:1px solid var(--line-h);
+border-radius:3px;background:var(--s0);cursor:pointer;display:flex;align-items:center;
+justify-content:center;z-index:3;padding:0;color:transparent}
+.ck:hover{border-color:var(--hover)}
+.ck.on{background:var(--ok);border-color:var(--ok);color:var(--ok-ink)}
+
+/* selection bar — appears when parts are picked */
+.selbar{display:flex;align-items:center;gap:10px;padding:11px 18px;
+border-bottom:1px solid var(--line);background:var(--s2)}
+.selbar .slots{display:flex;align-items:center;gap:7px;flex:1;min-width:0}
+.selbar .sl{display:flex;align-items:center;gap:7px;padding:5px 9px;border:1px solid var(--line);
+border-radius:3px;background:var(--s1);font-size:12px;color:var(--text)}
+.selbar .sl.empty{border-style:dashed;color:var(--faint)}
+.selbar .sl small{font-family:var(--cond);font-weight:700;font-size:8.5px;letter-spacing:.14em;
+text-transform:uppercase;color:var(--faint);display:block}
+.selbar .arrow{color:var(--faint);font-family:var(--mono);font-size:12px}
+.selbar .count{font-family:var(--mono);font-size:11.5px;color:var(--dim);white-space:nowrap}
+.selbar .b{height:var(--h);padding:0 14px;font-size:11px;letter-spacing:.12em;flex:0 0 auto}
+
+/* deck-full prompt */
+.prompt{margin:16px 18px 0;border:1px solid var(--warn);border-radius:4px;background:var(--s1);padding:13px 15px}
+.prompt h4{font-family:var(--cond);font-weight:700;font-size:12px;letter-spacing:.12em;
+text-transform:uppercase;color:var(--warn);margin-bottom:6px}
+.prompt p{font-size:12.5px;color:var(--dim);line-height:1.6;margin-bottom:10px}
+.swaps{display:flex;gap:7px;flex-wrap:wrap}
+.swap{display:flex;align-items:center;gap:8px;height:34px;padding:0 12px;border:1px solid var(--line);
+border-radius:3px;background:var(--s0);cursor:pointer;font-size:12.5px;color:var(--dim)}
+.swap:hover{border-color:var(--hover);color:var(--text)}
+.swap b{font-family:var(--cond);font-weight:700;font-size:11px;text-transform:uppercase;color:var(--text)}
+
+/* ---------- assembled Bey card ---------- */
+.bey{display:flex;gap:10px;align-items:center;padding:10px;border-bottom:1px solid var(--line);
+background:var(--s0-glass);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.bey .pc{width:44px;height:44px;flex:0 0 44px;border:1px solid var(--line);border-radius:3px;
+background:var(--s1);display:flex;align-items:center;justify-content:center}
+.bey .plus{color:var(--faint);font-family:var(--mono);font-size:13px}
+.beyname{font-family:var(--cond);font-weight:700;font-size:15px;text-transform:uppercase;line-height:1.15}
+.beysub{font-family:var(--mono);font-size:10.5px;color:var(--faint);margin-top:3px}
+
+/* ---------- builder slot picker ---------- */
+.picker{position:absolute;top:calc(100% + 6px);left:0;width:330px;background:var(--s2);
+border:1px solid var(--line-h);border-radius:4px;z-index:30;overflow:hidden;
+box-shadow:0 12px 32px rgba(0,0,0,.45)}
+.picker .pin{position:relative;padding:9px}
+.picker input{width:100%;height:32px;background:var(--s0);border:1px solid var(--line);
+border-radius:3px;padding:0 10px 0 30px;color:var(--text);font-family:var(--sans);font-size:13px}
+.picker input:focus{outline:none;border-color:var(--hover)}
+.picker .pin svg{position:absolute;left:19px;top:50%;transform:translateY(-50%);color:var(--faint)}
+.picker ul{list-style:none;max-height:212px;overflow:auto;border-top:1px solid var(--line)}
+.picker li{padding:8px 11px;display:flex;align-items:center;gap:9px;cursor:pointer;font-size:13px;color:var(--dim)}
+.picker li:hover,.picker li.hl{background:var(--s1);color:var(--text)}
+.picker li .ic{width:26px;height:26px;flex:0 0 26px;border:1px solid var(--line);border-radius:3px;
+display:flex;align-items:center;justify-content:center;background:var(--s0)}
+.picker li .nm{flex:1;min-width:0}
+.picker li .qt{font-family:var(--mono);font-size:10px;color:var(--faint);flex:0 0 auto}
+.picker .miss{padding:9px 11px;border-top:1px solid var(--line);font-size:12px;color:var(--faint);
+display:flex;align-items:center;justify-content:space-between;gap:8px}
+.slotwrap{position:relative}
+.slot.picking{background:var(--s1);outline:1px solid var(--info)}
+
+/* ---------- responsive ----------
+   Indicative only. The built app is mobile-first per design-spec.md — bottom
+   sheets for pickers, a sticky deck bar, 2-up grids. These rules stop the
+   mockup collapsing at narrow widths; they are not the production approach. */
+@media (prefers-reduced-motion:reduce){.shot,.scopy,.mini{transition:none}}
+@media (max-width:1080px){
+  .grid{grid-template-columns:repeat(3,1fr)}
+  .deckgrid{grid-template-columns:1fr}
+  .col+.col{border-left:0;border-top:1px solid var(--line)}
+  .shots{grid-template-columns:1fr}
+  .dslots{grid-template-columns:1fr}
+  .acct{grid-template-columns:1fr}
+  .aside{border-right:0;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;padding:8px}
+  .aside .sec{width:100%}
+  .cols{grid-template-columns:1fr}
+  .arrows{flex-direction:row;padding:0 0 10px;gap:0;justify-content:center}
+  .col2.now{border-right:0;border-bottom:1px solid var(--line)}
+}
+@media (max-width:760px){
+  body{padding:12px}
+  .grid,.grid.three{grid-template-columns:repeat(2,1fr)}
+  .deltas{grid-template-columns:repeat(2,1fr)}
+  .stats3{grid-template-columns:repeat(2,1fr)}
+  nav{gap:13px;font-size:11px;overflow-x:auto}
+  .top{position:static}
+  .hero h1{font-size:31px}
+  .scopy h3{font-size:23px}
+  .frow{grid-template-columns:1fr;gap:6px}
+}
+@media (max-width:520px){
+  .grid,.grid.three{grid-template-columns:1fr}
+  .chrome{flex-wrap:wrap;position:static}
+  .filters{gap:7px}
+  .find{flex:1 1 100%}
+}
+</style>
+</head>
+<body>
+<div class="bg"><div class="glow"></div><div class="dots"></div></div>
+
+<!-- ============================================================
+     MOCKUP-ONLY SCAFFOLDING — DO NOT BUILD ANY OF THIS
+
+     This file is a specification, not a page to reproduce. A few
+     controls exist only so every screen can be reached and demoed
+     from one static HTML file. They are NOT app features:
+
+       .chrome / #siteNav   the Home | Dashboard bar at the top, plus
+                            the Log in / Sign up buttons beside it.
+                            The real app routes by auth state instead.
+       .demoEmpty           seven "Empty state" buttons, one per screen.
+                            They toggle body.demo-empty so the empty
+                            states can be previewed. The app has no such
+                            control -- an empty state appears when the
+                            data is genuinely empty.
+       .stamp               the build timestamp in the corner.
+
+     ADMIN IS REACHED from the Administration item in the Manage account
+     sidebar, and that item is visible only to a superadmin. It is the only
+     route -- there is no hidden affordance anywhere else.
+
+     Everything else IS the specification: the screen structure, the
+     components, and the copy.
+
+     DESIGN TOKENS live in two places:
+       :root                    typography and layout only
+       [data-theme="dark"]      all 24 colour tokens
+       [data-theme="light"]     the same 24, defined again
+     Both themes are first-class. Take both; do not flatten to one.
+     ============================================================ -->
+<div class="chrome"><!-- mockup-only: screen switcher, not an app feature -->
+  <div class="seg" id="siteNav">
+    <button class="on" data-s="landing">Home</button>
+    <button data-s="decks">Dashboard</button>
+  </div>
+  <div class="spacer"></div>
+  <div class="seg icons">
+    <button id="tl" aria-label="Light mode"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19"/></svg></button>
+    <button id="td" class="on" aria-label="Dark mode"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 14.5A8.5 8.5 0 019.5 4a8.5 8.5 0 1010.5 10.5z"/></svg></button>
+  </div>
+  <div class="seg auth" id="authSeg"><button data-s="decks">Log in</button><button class="on" data-s="decks">Sign up</button></div>
+</div>
+
+<div class="ovl" id="decklimit" hidden>
+  <div class="sheet" style="width:470px">
+    <div class="sh"><h3>You've reached 3 decks</h3>
+      <p>The free plan keeps three decks. Upgrade for unlimited — and nothing you've built is ever deleted.</p></div>
+    <div style="padding:18px">
+      <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:6px">
+        <span style="font-family:var(--mono);font-size:32px;color:var(--ok)">$10</span>
+        <span style="font-family:var(--mono);font-size:17px;color:var(--faint);text-decoration:line-through">$15</span>
+        <span style="font-family:var(--cond);font-weight:700;font-size:9.5px;letter-spacing:.14em;
+          text-transform:uppercase;color:var(--ok-ink);background:var(--ok);padding:3px 8px;border-radius:3px">33% off</span>
+      </div>
+      <div style="font-size:12.5px;color:var(--faint);margin-bottom:16px">one-time · flash sale, ends soon</div>
+      <ul style="list-style:none;display:flex;flex-direction:column;gap:8px">
+        <li style="display:flex;gap:9px;font-size:13px;color:var(--dim)"><span style="color:var(--ok)">&#10003;</span>Unlimited decks</li>
+                        
+      </ul>
+    </div>
+    <div class="sf"><button class="b" id="limitClose">Not now</button>
+      <button class="b go">Upgrade — $10 one-time</button></div>
+  </div>
+</div>
+<div class="ovl" id="manageparts" hidden>
+  <div class="mp2">
+    <div class="h"><h3>Manage parts</h3>
+      <div class="find" style="flex:0 0 240px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input placeholder="Search 146 parts"></div>
+      <select class="sel"><option>All classes</option><option>Blades</option><option>Ratchets</option><option>Bits</option></select>
+      <span class="grow"></span>
+      <button class="b sm">Add part</button></div>
+    <div class="body2"><table class="ptab">
+      <tr><th></th><th>Name</th><th>Type</th><th>ATK</th><th>DEF</th><th>STA</th><th></th></tr>
+      <tr><td style="width:34px"><svg width="16" height="16" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" style="color:var(--atk);opacity:.8"><circle cx="32" cy="32" r="23"/><circle cx="32" cy="32" r="10"/></svg></td>
+      <td style="width:200px"><input value="Impact Drake"><span style="font-size:10.5px;color:var(--faint);display:block;margin-top:2px">UX-11 · blade · 38.8 g</span></td>
+      <td style="width:90px"><select class="sel" style="height:28px;width:100%"><option selected>attack</option><option>defense</option><option>stamina</option><option>balance</option><option>—</option></select></td>
+      <td><input class="num" value="88"></td><td><input class="num" value="29"></td><td><input class="num" value="12"></td>
+      <td><div class="act"><button class="b sm">Save</button><button class="b sm icon" title="Delete"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg></button></div></td></tr><tr><td style="width:34px"><svg width="16" height="16" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" style="color:var(--atk);opacity:.8"><circle cx="32" cy="32" r="23"/><circle cx="32" cy="32" r="10"/></svg></td>
+      <td style="width:200px"><input value="Cobalt Dragoon"><span style="font-size:10.5px;color:var(--faint);display:block;margin-top:2px">BX-34 · blade · left spin</span></td>
+      <td style="width:90px"><select class="sel" style="height:28px;width:100%"><option selected>attack</option><option>defense</option><option>stamina</option><option>balance</option><option>—</option></select></td>
+      <td><input class="num" value="70"></td><td><input class="num" value="18"></td><td><input class="num" value="29"></td>
+      <td><div class="act"><button class="b sm">Save</button><button class="b sm icon" title="Delete"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg></button></div></td></tr><tr><td style="width:34px"><svg width="16" height="16" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" style="color:var(--sta);opacity:.8"><circle cx="32" cy="32" r="23"/><circle cx="32" cy="32" r="10"/></svg></td>
+      <td style="width:200px"><input value="Wizard Rod"><span style="font-size:10.5px;color:var(--faint);display:block;margin-top:2px">UX-01 · blade · 36.4 g</span></td>
+      <td style="width:90px"><select class="sel" style="height:28px;width:100%"><option>attack</option><option>defense</option><option selected>stamina</option><option>balance</option><option>—</option></select></td>
+      <td><input class="num" value="22"></td><td><input class="num" value="38"></td><td><input class="num" value="82"></td>
+      <td><div class="act"><button class="b sm">Save</button><button class="b sm icon" title="Delete"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg></button></div></td></tr><tr><td style="width:34px"><svg width="16" height="16" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" style="color:var(--dim);opacity:.8"><rect x="8" y="24" width="48" height="16" rx="3"/></svg></td>
+      <td style="width:200px"><input value="3-60"><span style="font-size:10.5px;color:var(--faint);display:block;margin-top:2px">ratchet · 3 sides · 6.0 mm</span></td>
+      <td style="width:90px"><select class="sel" style="height:28px;width:100%"><option>attack</option><option>defense</option><option>stamina</option><option>balance</option><option selected>—</option></select></td>
+      <td><input class="num" value="30"></td><td><input class="num" value="24"></td><td><input class="num" value="20"></td>
+      <td><div class="act"><button class="b sm">Save</button><button class="b sm icon" title="Delete"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg></button></div></td></tr><tr><td style="width:34px"><svg width="16" height="16" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" style="color:var(--atk);opacity:.8"><path d="M20 12h24v14l-7 14h-10l-7-14z"/></svg></td>
+      <td style="width:200px"><input value="Low Rush"><span style="font-size:10.5px;color:var(--faint);display:block;margin-top:2px">LR · bit · gear 10</span></td>
+      <td style="width:90px"><select class="sel" style="height:28px;width:100%"><option selected>attack</option><option>defense</option><option>stamina</option><option>balance</option><option>—</option></select></td>
+      <td><input class="num" value="75"></td><td><input class="num" value="10"></td><td><input class="num" value="18"></td>
+      <td><div class="act"><button class="b sm">Save</button><button class="b sm icon" title="Delete"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg></button></div></td></tr><tr><td style="width:34px"><svg width="16" height="16" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" style="color:var(--def);opacity:.8"><path d="M20 12h24v14l-7 14h-10l-7-14z"/></svg></td>
+      <td style="width:200px"><input value="Metal Needle"><span style="font-size:10.5px;color:var(--faint);display:block;margin-top:2px">MN · bit · banned in WBO play</span></td>
+      <td style="width:90px"><select class="sel" style="height:28px;width:100%"><option>attack</option><option selected>defense</option><option>stamina</option><option>balance</option><option>—</option></select></td>
+      <td><input class="num" value="8"></td><td><input class="num" value="95"></td><td><input class="num" value="50"></td>
+      <td><div class="act"><button class="b sm">Save</button><button class="b sm icon" title="Delete"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg></button></div></td></tr>
+    </table></div>
+    <div class="f"><span style="font-size:12px;color:var(--faint)">Showing 6 of 146 · edits apply to the shared catalogue</span>
+      <span class="grow"></span>
+      <button class="b" id="manageClose">Close</button>
+      <button class="b go">Save all changes</button></div>
+  </div>
+</div>
+<div class="ovl" id="adddeck" hidden>
+  <div class="sheet">
+    <div class="sh"><h3>Add to a deck</h3><p>Impact Drake 9-60LR</p></div>
+    <div class="sl2">
+      <div class="dkrow"><div class="nm"><b>Nationals — draft</b><span>2 of 3 · WBO legal</span></div>
+        <button class="b sm go">Add</button></div>
+      <div class="dkrow"><div class="nm"><b>Defense wall</b><span>2 of 3 · incomplete</span></div>
+        <button class="b sm go">Add</button></div>
+      <div class="dkrow full"><div class="nm"><b>Locals — June</b><span>3 of 3 — full, you'll pick one to swap</span></div>
+        <button class="b sm">Swap in</button></div>
+      <div class="dkrow full"><div class="nm"><b>Left-spin experiment</b><span>3 of 3 — full</span></div>
+        <button class="b sm">Swap in</button></div>
+    </div>
+    <div class="sf"><button class="b" id="addDeckClose">Cancel</button>
+      <button class="b go" data-s="deckedit">New deck with this Bey</button></div>
+  </div>
+</div>
+<div class="ovl" id="intro" hidden>
+  <div class="intro">
+    <div class="slide" >
+      <div class="art"><div style="display:grid;grid-template-columns:repeat(4,42px);gap:7px"><div style="height:42px;border:1px solid var(--ok);border-radius:3px;background:var(--s1);display:flex;align-items:center;justify-content:center"><svg width="18" height="18" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" style="color:var(--atk);opacity:.8"><circle cx="32" cy="32" r="23"/><circle cx="32" cy="32" r="10"/></svg></div><div style="height:42px;border:1px solid var(--line);border-radius:3px;background:var(--s1);display:flex;align-items:center;justify-content:center"><svg width="18" height="18" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" style="color:var(--dim);opacity:.8"><rect x="8" y="24" width="48" height="16" rx="3"/></svg></div><div style="height:42px;border:1px solid var(--ok);border-radius:3px;background:var(--s1);display:flex;align-items:center;justify-content:center"><svg width="18" height="18" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" style="color:var(--atk);opacity:.8"><path d="M20 12h24v14l-7 14h-10l-7-14z"/></svg></div><div style="height:42px;border:1px solid var(--line);border-radius:3px;background:var(--s1);display:flex;align-items:center;justify-content:center"><svg width="18" height="18" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" style="color:var(--sta);opacity:.8"><circle cx="32" cy="32" r="23"/><circle cx="32" cy="32" r="10"/></svg></div><div style="height:42px;border:1px solid var(--line);border-radius:3px;background:var(--s1);display:flex;align-items:center;justify-content:center"><svg width="18" height="18" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" style="color:var(--def);opacity:.8"><rect x="8" y="24" width="48" height="16" rx="3"/></svg></div><div style="height:42px;border:1px solid var(--ok);border-radius:3px;background:var(--s1);display:flex;align-items:center;justify-content:center"><svg width="18" height="18" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" style="color:var(--dim);opacity:.8"><path d="M20 12h24v14l-7 14h-10l-7-14z"/></svg></div><div style="height:42px;border:1px solid var(--line);border-radius:3px;background:var(--s1);display:flex;align-items:center;justify-content:center"><svg width="18" height="18" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" style="color:var(--bal);opacity:.8"><circle cx="32" cy="32" r="23"/><circle cx="32" cy="32" r="10"/></svg></div><div style="height:42px;border:1px solid var(--line);border-radius:3px;background:var(--s1);display:flex;align-items:center;justify-content:center"><svg width="18" height="18" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" style="color:var(--sta);opacity:.8"><rect x="8" y="24" width="48" height="16" rx="3"/></svg></div></div></div>
+      <div class="body"><div class="step">01 of 03</div><h3>Choose your parts</h3><p>Beybox knows every BX and UX blade, ratchet and bit — 146 of them, with real stats. Mark what you own, and how many. Add a whole Beyblade by its product code, or loose parts one at a time.</p>
+        <div class="dots2"><i class="on"></i><i class=""></i><i class=""></i></div>
+      </div>
+    </div><div class="slide" hidden>
+      <div class="art"><div style="display:flex;flex-direction:column;align-items:center"><div style="width:52px;height:44px;border:1px solid var(--line);border-radius:3px;background:var(--s1);display:flex;align-items:center;justify-content:center"><svg width="26" height="26" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" style="color:var(--atk);opacity:.85"><circle cx="32" cy="32" r="23"/><circle cx="32" cy="32" r="10"/></svg></div><div style="width:1px;height:20px;background:var(--line)"></div><div style="width:52px;height:24px;border:1px solid var(--line);border-radius:3px;background:var(--s1);display:flex;align-items:center;justify-content:center"><svg width="24" height="11" viewBox="0 0 56 26" fill="none" stroke="currentColor" stroke-width="2.4" style="color:var(--dim);opacity:.85"><rect x="4" y="6" width="48" height="14" rx="2"/></svg></div><div style="width:1px;height:13px;background:var(--line)"></div><div style="width:52px;height:30px;border:1px solid var(--line);border-radius:3px;background:var(--s1);display:flex;align-items:center;justify-content:center"><svg width="18" height="18" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" style="color:var(--atk);opacity:.85"><path d="M20 12h24v14l-7 14h-10l-7-14z"/></svg></div></div></div>
+      <div class="body"><div class="step">02 of 03</div><h3>Build your collection</h3><p>A blade, a ratchet and a bit make a Bey. Assemble them in the Builder and watch the stack grow as ratchet height changes — that spacing is the real measurement, not a guess.</p>
+        <div class="dots2"><i class=""></i><i class="on"></i><i class=""></i></div>
+      </div>
+    </div><div class="slide" hidden>
+      <div class="art"><div style="display:flex;gap:8px"><div style="width:78px;padding:8px;border:1px solid var(--ok);border-radius:3px;background:var(--s1)"><div style="font-family:var(--cond);font-weight:700;font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:var(--ok);margin-bottom:6px">Legal</div><div style="height:3px;background:var(--s2);border-radius:2px;margin-bottom:3px"></div><div style="height:3px;background:var(--s2);border-radius:2px;margin-bottom:3px"></div><div style="height:3px;background:var(--s2);border-radius:2px;margin-bottom:3px"></div></div><div style="width:78px;padding:8px;border:1px solid var(--warn);border-radius:3px;background:var(--s1)"><div style="font-family:var(--cond);font-weight:700;font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:var(--warn);margin-bottom:6px">Repeat</div><div style="height:3px;background:var(--s2);border-radius:2px;margin-bottom:3px"></div><div style="height:3px;background:var(--s2);border-radius:2px;margin-bottom:3px"></div><div style="height:3px;background:var(--s2);border-radius:2px;margin-bottom:3px"></div></div><div style="width:78px;padding:8px;border:1px solid var(--line);border-radius:3px;background:var(--s1)"><div style="font-family:var(--cond);font-weight:700;font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:var(--line);margin-bottom:6px">Casual</div><div style="height:3px;background:var(--s2);border-radius:2px;margin-bottom:3px"></div><div style="height:3px;background:var(--s2);border-radius:2px;margin-bottom:3px"></div><div style="height:3px;background:var(--s2);border-radius:2px;margin-bottom:3px"></div></div></div></div>
+      <div class="body"><div class="step">03 of 03</div><h3>Build a deck</h3><p>Three Beys make a deck. Beybox checks it against WBO rules as you go — repeated parts, banned bits, type coverage. It tells you what's legal, never stops you building, and points at the part of yours that would improve it most.</p>
+        <div class="dots2"><i class=""></i><i class=""></i><i class="on"></i></div>
+      </div>
+</div>
+    <div class="foot2">
+      <label class="chk" id="dontshow"><span class="box"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l6 6L20 6"/></svg></span>Don't show this again</label>
+      <span class="grow"></span>
+      <button class="b" id="introBack" disabled style="opacity:.45">Back</button>
+      <button class="b go" id="introNext">Next</button>
+    </div>
+  </div>
+</div>
+
+<div class="app">
+<div class="top" id="hdr" style="display:none">
+  <div class="brandbox"><div class="mark" role="img" aria-label="Beybox"></div><div class="wordmark">BEYBOX</div></div>
+  <nav>
+    <a class="on" data-s="decks">Decks</a><a data-s="collection">Collection</a>
+    <a data-s="builder">Builder</a><a data-s="inventory">Inventory</a>
+    <a data-s="explore">Explore</a>
+  </nav>
+  <div class="hdr-r">
+    <button class="b grey" data-s="account">Manage account</button><span class="badge-pro">Pro</span>
+  </div>
+</div>
+
+<!-- ============ DECKS (default) ============ -->
+<div class="screen" id="s-decks">
+  <div class="filters">
+    <div class="find"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input placeholder="Search decks by name" value="loc"></div>
+    <select class="sel"><option>All decks</option><option>WBO legal</option><option>Casual</option></select><select class="sel"><option>Sort: recent</option><option>Sort: name</option></select>
+    <button class="b" id="newDeck"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>New deck</button>
+  </div>
+  <div class="emptywrap" hidden><div class="empty-state">
+      <div class="ei"><svg width="44" height="44" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="color:var(--faint);opacity:.4"><circle cx="32" cy="32" r="23"/><circle cx="32" cy="32" r="10"/></svg></div>
+      <h4>No decks yet</h4><p>A deck is three Beys, checked against WBO rules as you build it. Start one and Beybox will tell you what's legal as you go.</p>
+      <button class="b go" data-s="deckedit">Start a deck</button>
+    </div></div>
+  <div class="grid three">
+    <div class="card active"><div class="cbody" style="padding:14px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+        <div class="cname">Locals — June</div><span class="pill ok">WBO legal</span></div>
+      <div><span class="pill">Impact Drake 9-60LR</span></div>
+      <div><span class="pill">Wizard Rod 3-60B</span></div>
+      <div style="margin-bottom:10px"><span class="pill">Knight Shield 4-80HN</span></div>
+      <div class="cover"><div class="cv has" style="color:var(--atk)">ATK</div>
+        <div class="cv has" style="color:var(--def)">DEF</div>
+        <div class="cv has" style="color:var(--sta)">STA</div><div class="cv">BAL</div></div>
+      <div class="actions"><button class="b" data-s="deckedit">Open</button><button class="b">Duplicate</button><button class="b icon" title="Remove"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6M10 11v5M14 11v5"/></svg></button></div></div></div>
+    <div class="card attn"><div class="cbody" style="padding:14px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+        <div class="cname">All-attack test</div><span class="pill warn">Not legal</span></div>
+      <div><span class="pill">Impact Drake <span class="pill clash" style="margin:0">3-60</span></span></div>
+      <div><span class="pill">Cobalt Dragoon <span class="pill clash" style="margin:0">3-60</span></span></div>
+      <div style="margin-bottom:10px"><span class="pill">Dran Buster 4-60R</span></div>
+      <div class="legal bad" style="margin-top:0"><div class="legal-t">3-60 used twice</div>
+        <div class="legal-b">Builds 1 and 2. Fine casually — WBO decks can't repeat parts.</div></div>
+      <div class="actions"><button class="b" data-s="deckedit">Open</button><button class="b">Duplicate</button><button class="b icon" title="Remove"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6M10 11v5M14 11v5"/></svg></button></div></div></div>
+    <div class="card"><div class="cbody" style="padding:14px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+        <div class="cname">Casual — MN test</div><span class="pill info">Casual only</span></div>
+      <div><span class="pill">Cobalt Dragoon 2-60C</span></div>
+      <div><span class="pill">Knight Shield 4-80 <span class="pill warn" style="margin:0">MN</span></span></div>
+      <div style="margin-bottom:10px"><span class="pill custom">BX-00 Flat build</span></div>
+      <div class="note" style="margin:0 0 10px;border-left-color:var(--warn)">Contains Metal Needle, banned in WBO play. Fine for casual battles.</div>
+      <div class="actions"><button class="b" data-s="deckedit">Open</button><button class="b">Duplicate</button><button class="b icon" title="Remove"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6M10 11v5M14 11v5"/></svg></button></div></div></div>
+  
+    <div class="card active"><div class="cbody" style="padding:14px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+        <div class="cname">Nationals — draft</div><span class="pill ok">WBO legal</span></div>
+      <div><span class="pill">Dran Buster 4-60R</span></div><div><span class="pill">Shark Scale 9-70O</span></div><div><span class="pill">Hells Hammer 3-85B</span></div><div class="cover"><div class="cv has" style=color:var(--atk)>ATK</div><div class="cv">DEF</div><div class="cv has" style=color:var(--sta)>STA</div><div class="cv has" style=color:var(--bal)>BAL</div></div>
+      <div class="actions"><button class="b" data-s="deckedit">Open</button>
+        <button class="b">Duplicate</button><button class="b icon" title="Remove"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6M10 11v5M14 11v5"/></svg></button></div></div></div>
+    <div class="card active"><div class="cbody" style="padding:14px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+        <div class="cname">Left-spin experiment</div><span class="pill ok">WBO legal</span></div>
+      <div><span class="pill">Cobalt Dragoon 2-60C</span></div><div><span class="pill">Meteor Dragoon 3-70O</span></div><div><span class="pill">Wizard Rod 9-60B</span></div><div class="cover"><div class="cv has" style=color:var(--atk)>ATK</div><div class="cv">DEF</div><div class="cv has" style=color:var(--sta)>STA</div><div class="cv">BAL</div></div><div class="legal bad" style="margin-top:8px"><div class="legal-b">Two left-spin blades — you'll need a left-spin launcher.</div></div>
+      <div class="actions"><button class="b" data-s="deckedit">Open</button>
+        <button class="b">Duplicate</button><button class="b icon" title="Remove"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6M10 11v5M14 11v5"/></svg></button></div></div></div>
+    <div class="card"><div class="cbody" style="padding:14px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+        <div class="cname">Defense wall</div><span class="pill info">Incomplete</span></div>
+      <div><span class="pill">Knight Shield 4-80HN</span></div><div><span class="pill">Knight Mail 5-60DB</span></div><div><span class="pill" style="border:1px dashed var(--line);color:var(--faint);background:transparent">empty slot</span></div><div class="cover"><div class="cv">ATK</div><div class="cv has" style=color:var(--def)>DEF</div><div class="cv has" style=color:var(--sta)>STA</div><div class="cv">BAL</div></div><div class="legal bad" style="margin-top:8px"><div class="legal-b">Needs a third Bey.</div></div>
+      <div class="actions"><button class="b" data-s="deckedit">Open</button>
+        <button class="b">Duplicate</button><button class="b icon" title="Remove"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6M10 11v5M14 11v5"/></svg></button></div></div></div>
+  </div>
+  <div class="foot"><div class="foot-l"><span>6 decks · 3 WBO legal</span><button class="help" data-tip="A deck is three builds. WBO decks cannot repeat parts across builds.">?</button></div><div class="foot-r"><!-- mockup-only --><button class="b sm demoEmpty" title="Preview the empty state">Empty state</button><button class="help" data-tip="Creates a link that opens this deck for anyone.">?</button></div></div>
+</div>
+
+<!-- ============ DECK EDITOR ============ -->
+<div class="screen" id="s-deckedit">
+  <div class="filters">
+    <div class="find"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input value="Locals — June"></div>
+    <select class="sel"><option>WBO deck (3)</option><option>Casual (any size)</option></select>
+    <button class="b" data-s="collection">Add from collection</button>
+    <button class="b go">Save deck</button>
+  </div>
+  <div class="dslots">
+    <div class="dslot ok">
+      <div class="dh"><span class="dn">01</span><span class="dot" style="background:var(--atk)"></span></div>
+      <div class="dparts"><div class="pz"><svg width="22" height="22" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color:var(--atk);opacity:.72"><circle cx="32" cy="32" r="23"/><circle cx="32" cy="32" r="10"/></svg></div><span class="plus">+</span>
+        <div class="pz"><svg width="20" height="20" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color:var(--dim);opacity:.72"><rect x="8" y="24" width="48" height="16" rx="3"/></svg></div><span class="plus">+</span>
+        <div class="pz"><svg width="18" height="18" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color:var(--atk);opacity:.72"><path d="M20 12h24v14l-7 14h-10l-7-14z"/></svg></div></div>
+      <div class="dbody"><div class="dname">Impact Drake 9-60LR</div>
+        <div class="dsub">Impact Drake · 9-60 · Low Rush</div>
+        <div class="dstat"><span>ATK <b>120</b></span><span>DEF <b>33</b></span><span>STA <b>28</b></span></div>
+        <div class="actions"><button class="b" data-s="builder">Edit</button>
+          <button class="b">Swap</button><button class="b icon" title="Remove from deck"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6M10 11v5M14 11v5"/></svg></button></div></div></div>
+    <div class="dslot ok">
+      <div class="dh"><span class="dn">02</span><span class="dot" style="background:var(--sta)"></span></div>
+      <div class="dparts"><div class="pz"><svg width="22" height="22" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color:var(--atk);opacity:.72"><circle cx="32" cy="32" r="23"/><circle cx="32" cy="32" r="10"/></svg></div><span class="plus">+</span>
+        <div class="pz"><svg width="20" height="20" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color:var(--dim);opacity:.72"><rect x="8" y="24" width="48" height="16" rx="3"/></svg></div><span class="plus">+</span>
+        <div class="pz"><svg width="18" height="18" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color:var(--atk);opacity:.72"><path d="M20 12h24v14l-7 14h-10l-7-14z"/></svg></div></div>
+      <div class="dbody"><div class="dname">Wizard Rod 3-60B</div>
+        <div class="dsub">Wizard Rod · 3-60 · Ball</div>
+        <div class="dstat"><span>ATK <b>52</b></span><span>DEF <b>62</b></span><span>STA <b>102</b></span></div>
+        <div class="actions"><button class="b" data-s="builder">Edit</button>
+          <button class="b">Swap</button><button class="b icon" title="Remove from deck"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6M10 11v5M14 11v5"/></svg></button></div></div></div>
+    <div class="dslot empty">
+      <svg width="44" height="44" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color:var(--faint);opacity:.4"><circle cx="32" cy="32" r="23"/><circle cx="32" cy="32" r="10"/></svg>
+      <div style="font-family:var(--cond);font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.04em">Slot 03 empty</div>
+      <p style="font-size:12.5px;color:var(--dim);line-height:1.55;max-width:200px">A WBO deck holds three Beys.</p>
+      <button class="b" data-s="collection">Add from collection</button>
+      <button class="b" data-s="builder">Build a new one</button>
+    </div>
+  </div>
+  <div style="padding:14px 18px 18px;display:flex;gap:14px;align-items:flex-start">
+    <div class="legal bad" style="margin:0;flex:1"><div class="legal-t">Incomplete</div>
+      <div class="legal-b">One slot to fill. No repeated parts so far — this deck will be WBO legal once it's full.</div></div>
+    <div style="flex:0 0 240px"><div class="eyebrow">Type coverage</div>
+      <div class="cover" style="margin:0"><div class="cv has" style="color:var(--atk)">ATK</div>
+        <div class="cv">DEF</div><div class="cv has" style="color:var(--sta)">STA</div><div class="cv">BAL</div></div></div>
+  </div>
+  <div class="foot"><div class="foot-l"><span>2 of 3 builds · no repeats</span>
+    <button class="help" data-tip="A WBO deck holds three Beys and cannot repeat a part across them.">?</button></div>
+    <div class="foot-r"><!-- mockup-only --><button class="b sm demoEmpty" title="Preview the empty state">Empty state</button>
+    <button class="help" data-tip="Creates a link that opens this deck for anyone.">?</button></div></div>
+</div>
+
+<!-- ============ BUILDER ============ -->
+<div class="screen" id="s-builder">
+  <div class="filters">
+    <div class="find"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input placeholder="Search your builds" value="impact"></div>
+    <select class="sel"><option>Editing: Impact Drake 9-60LR</option><option>New build</option></select>
+    <button class="b"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg data-s="builder">New build</button>
+  </div>
+  <div class="deckgrid">
+    <div class="col">
+      <div class="eyebrow">In deck — Locals</div>
+      <div class="combo ok on"><div class="combo-h"><span class="combo-n">01</span>
+        <span class="dot" style="background:var(--atk)"></span></div>
+        <span class="pill">Impact Drake</span><span class="pill">9-60</span><span class="pill">LR</span></div>
+      <div class="combo ok"><div class="combo-h"><span class="combo-n">02</span>
+        <span class="dot" style="background:var(--sta)"></span></div>
+        <span class="pill">Wizard Rod</span><span class="pill">3-60</span><span class="pill">Ball</span></div>
+      <div class="combo"><div class="combo-h"><span class="combo-n">03</span>
+        <span class="dot" style="background:var(--def)"></span></div>
+        <span class="pill">Knight Shield</span><span class="pill">4-80</span>
+        <span class="pill" style="border:1px dashed var(--line);color:var(--faint);background:transparent">choose bit</span></div>
+      <div class="legal bad"><div class="legal-t">Incomplete</div><div class="legal-b">Build 03 needs a bit.</div></div>
+      <div class="cover"><div class="cv has" style="color:var(--atk)">ATK</div><div class="cv">DEF</div>
+        <div class="cv has" style="color:var(--sta)">STA</div><div class="cv">BAL</div></div>
+    </div>
+    <div class="col">
+      <div class="eyebrow">Build 01 — assembly</div>
+      <div class="stage">
+        <div class="ruler"><div class="tick" style="top:0"><span>mm</span><i></i></div>
+          <div class="tick" style="top:112px"><span>6.0</span><i></i></div>
+          <div class="tick" style="top:196px"><span>0.0</span><i></i></div></div>
+        <div class="stack">
+          <div class="slot"><div class="sthumb"><svg width="54" height="54" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color:var(--atk);opacity:.72"><circle cx="32" cy="32" r="23"/><circle cx="32" cy="32" r="10"/><path d="M32 9 L38 20 M55 32 L44 36 M32 55 L26 44 M9 32 L20 28"/></svg></div>
+            <div><div class="role">Blade</div><div class="pname">Impact Drake</div>
+              <div class="psub">UX-11 · right spin · 38.8 g</div>
+              <span class="tb" style="color:var(--atk)">Attack</span></div></div>
+          <div class="gap" style="height:34px"><div class="gapline"><i></i></div><div class="gapnote"></div></div>
+          <div class="slot"><div class="sthumb rt"><svg width="46" height="46" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color:var(--dim);opacity:.72"><rect x="8" y="24" width="48" height="16" rx="3"/><path d="M20 24v16 M32 24v16 M44 24v16"/></svg></div>
+            <div><div class="role">Ratchet</div><div class="pname">9-60</div>
+              <div class="psub">9 sides · 6.0 mm · 6.4 g</div></div></div>
+          <div class="gap" style="height:26px"><div class="gapline"><i></i></div><div class="gapnote">ratchet height sets this gap</div></div>
+          <div class="slotwrap">
+            <div class="slot picking"><div class="sthumb bit empty"><svg width="40" height="40" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color:var(--faint);opacity:.5"><path d="M20 12h24v14l-7 14h-10l-7-14z"/><path d="M27 46h10"/></svg></div>
+              <div><div class="role">Bit</div><div class="pname ghost">Choose a bit</div>
+                <div class="psub">type to search your parts</div></div></div>
+            <div class="picker">
+  <div class="pin"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input value="fl" placeholder="Search bits you own"></div>
+  <ul>
+    <li class="hl"><span class="ic"><svg width="18" height="18" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color:var(--atk);opacity:.72"><path d="M20 12h24v14l-7 14h-10l-7-14z"/><path d="M27 46h10"/></svg></span><span class="nm">Flat <em style="font-style:normal;color:var(--faint);font-family:var(--mono);font-size:10px">F</em></span><span class="qt">×2</span></li>
+    <li><span class="ic"><svg width="18" height="18" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color:var(--atk);opacity:.72"><path d="M20 12h24v14l-7 14h-10l-7-14z"/><path d="M27 46h10"/></svg></span><span class="nm">Low Flat <em style="font-style:normal;color:var(--faint);font-family:var(--mono);font-size:10px">LF</em></span><span class="qt">×1</span></li>
+    <li><span class="ic"><svg width="18" height="18" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color:var(--atk);opacity:.72"><path d="M20 12h24v14l-7 14h-10l-7-14z"/><path d="M27 46h10"/></svg></span><span class="nm">Free Flat <em style="font-style:normal;color:var(--faint);font-family:var(--mono);font-size:10px">FF</em></span><span class="qt">×1</span></li>
+      </ul>
+  <div class="miss"><span>Can't find it?</span><button class="b sm" data-s="custom">Add a custom part</button></div>
+</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="eyebrow">Combined</div>
+      <div class="stat"><div class="stat-h"><span class="stat-l">ATK</span><b>120</b></div><div class="track"><div class="fill" style="width:86%;background:var(--atk)"></div></div></div>
+      <div class="stat"><div class="stat-h"><span class="stat-l">DEF</span><b>33</b></div><div class="track"><div class="fill" style="width:24%;background:var(--def)"></div></div></div>
+      <div class="stat"><div class="stat-h"><span class="stat-l">STA</span><b>28</b></div><div class="track"><div class="fill" style="width:20%;background:var(--sta)"></div></div></div>
+      <div class="stat"><div class="stat-h"><span class="stat-l">DSH</span><b>35</b></div><div class="track"><div class="fill" style="width:70%;background:var(--bal)"></div></div></div>
+      <div class="spec"><div><div class="k">Height</div><div class="v">6.0 mm</div></div>
+        <div><div class="k">Weight</div><div class="v">47.1 g</div></div>
+        <div><div class="k">Spin</div><div class="v">Right</div></div>
+        <div><div class="k">Gear</div><div class="v">10</div></div></div>
+      <div class="eyebrow">Suggested from your parts</div>
+      <div class="rec best"><div class="rec-h"><span class="rec-n">Flat</span><span class="rec-s">91</span></div>
+        <ul class="why"><li>Highest attack of your owned bits</li><li>Same X-Dash profile as Low Rush</li></ul></div>
+      <div class="rec want"><div class="rec-h"><span class="rec-n">Gear Flat</span><span class="tag">Not owned</span></div>
+        <ul class="why"><li>Scores 14% above your best owned</li></ul></div>
+      <div class="btnrow"><button class="b hot">Randomize</button><button class="b go">Save build</button></div>
+    </div>
+  </div>
+  <div class="foot"><div class="foot-l"><span>Build 01 of 3</span><button class="help" data-tip="A build is one Bey. Three builds make a deck.">?</button></div><div class="foot-r"><!-- mockup-only --><button class="b sm demoEmpty" title="Preview the empty state">Empty state</button><button class="b sm">Reset to stock</button><button class="help" data-tip="Restore the ratchet and bit this blade originally shipped with.">?</button></div></div>
+</div>
+
+<!-- ============ COLLECTION (assembled Beys) ============ -->
+<div class="screen" id="s-collection">
+  <div class="filters">
+    <div class="find"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input placeholder="Search your Beys — Impact Drake, 9-60LR…"></div>
+    <div class="chipset"><button class="chip  on">All</button><button class="chip atk ">Attack</button><button class="chip def ">Defense</button><button class="chip sta ">Stamina</button><button class="chip bal ">Balance</button></div>
+    <select class="sel"><option>All builds</option><option>In a deck</option><option>Not in a deck</option></select><select class="sel"><option>Sort: recent</option><option>Sort: ATK</option><option>Sort: name</option></select>
+    <button class="b" data-s="builder"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>New build</button>
+  </div>
+  <div class="emptywrap" hidden><div class="empty-state">
+      <div class="ei"><svg width="44" height="44" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="color:var(--faint);opacity:.4"><circle cx="32" cy="32" r="23"/><circle cx="32" cy="32" r="10"/></svg></div>
+      <h4>No Beys built yet</h4><p>A Bey is a blade, a ratchet and a bit. Search your inventory to assemble one, or add a whole Beyblade by its product code.</p>
+      <button class="b go" data-s="collection">Add Beys to your collection</button>
+    </div></div>
+  <div class="grid three"><div class="card active">
+  <div class="bey"><div class="pc"><svg width="26" height="26" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color:var(--atk);opacity:.72"><circle cx="32" cy="32" r="23"/><circle cx="32" cy="32" r="10"/><path d="M32 9 L38 20 M55 32 L44 36 M32 55 L26 44 M9 32 L20 28"/></svg></div><span class="plus">+</span><div class="pc"><svg width="22" height="22" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color:var(--dim);opacity:.72"><rect x="8" y="24" width="48" height="16" rx="3"/><path d="M20 24v16 M32 24v16 M44 24v16"/></svg></div><span class="plus">+</span><div class="pc"><svg width="20" height="20" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color:var(--atk);opacity:.72"><path d="M20 12h24v14l-7 14h-10l-7-14z"/><path d="M27 46h10"/></svg></div><div style="flex:1;min-width:0">
+    <div class="beyname">Impact Drake 9-60LR</div><div class="beysub">Impact Drake · 9-60 · Low Rush</div></div></div>
+  <div class="cbody">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <span class="csub" style="margin:0">ATK 120 · DEF 33 · STA 28 · 47.1 g</span><span class="pill ok">In Locals</span></div>
+    <div class="actions"><button class="b" data-s="builder">Edit</button><button class="b addDeck">Add to deck</button><button class="b icon" title="Remove"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6M10 11v5M14 11v5"/></svg></button></div></div></div><div class="card active">
+  <div class="bey"><div class="pc"><svg width="26" height="26" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color:var(--atk);opacity:.72"><circle cx="32" cy="32" r="23"/><circle cx="32" cy="32" r="10"/><path d="M32 9 L38 20 M55 32 L44 36 M32 55 L26 44 M9 32 L20 28"/></svg></div><span class="plus">+</span><div class="pc"><svg width="22" height="22" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color:var(--dim);opacity:.72"><rect x="8" y="24" width="48" height="16" rx="3"/><path d="M20 24v16 M32 24v16 M44 24v16"/></svg></div><span class="plus">+</span><div class="pc"><svg width="20" height="20" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color:var(--atk);opacity:.72"><path d="M20 12h24v14l-7 14h-10l-7-14z"/><path d="M27 46h10"/></svg></div><div style="flex:1;min-width:0">
+    <div class="beyname">Wizard Rod 3-60B</div><div class="beysub">Wizard Rod · 3-60 · Ball</div></div></div>
+  <div class="cbody">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <span class="csub" style="margin:0">ATK 52 · DEF 62 · STA 102 · 45.4 g</span><span class="pill ok">In Locals</span></div>
+    <div class="actions"><button class="b" data-s="builder">Edit</button><button class="b addDeck">Add to deck</button><button class="b icon" title="Remove"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6M10 11v5M14 11v5"/></svg></button></div></div></div><div class="card marked">
+  <div class="bey"><div class="pc"><svg width="26" height="26" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color:var(--atk);opacity:.72"><circle cx="32" cy="32" r="23"/><circle cx="32" cy="32" r="10"/><path d="M32 9 L38 20 M55 32 L44 36 M32 55 L26 44 M9 32 L20 28"/></svg></div><span class="plus">+</span><div class="pc"><svg width="22" height="22" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color:var(--dim);opacity:.72"><rect x="8" y="24" width="48" height="16" rx="3"/><path d="M20 24v16 M32 24v16 M44 24v16"/></svg></div><span class="plus">+</span><div class="pc"><svg width="20" height="20" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color:var(--atk);opacity:.72"><path d="M20 12h24v14l-7 14h-10l-7-14z"/><path d="M27 46h10"/></svg></div><div style="flex:1;min-width:0">
+    <div class="beyname">Cobalt Dragoon 2-60C</div><div class="beysub">Cobalt Dragoon · 2-60 · Cyclone</div></div></div>
+  <div class="cbody">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <span class="csub" style="margin:0">ATK 116 · DEF 28 · STA 41 · 46.2 g</span><span class="pill" style="border-color:var(--info);color:var(--info)">Not in a deck</span></div>
+    <div class="actions"><button class="b" data-s="builder">Edit</button><button class="b addDeck">Add to deck</button><button class="b icon" title="Remove"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6M10 11v5M14 11v5"/></svg></button></div></div></div><div class="card attn">
+  <div class="bey"><div class="pc"><svg width="26" height="26" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color:var(--atk);opacity:.72"><circle cx="32" cy="32" r="23"/><circle cx="32" cy="32" r="10"/><path d="M32 9 L38 20 M55 32 L44 36 M32 55 L26 44 M9 32 L20 28"/></svg></div><span class="plus">+</span><div class="pc"><svg width="22" height="22" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color:var(--dim);opacity:.72"><rect x="8" y="24" width="48" height="16" rx="3"/><path d="M20 24v16 M32 24v16 M44 24v16"/></svg></div><span class="plus">+</span><div class="pc"><svg width="20" height="20" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color:var(--atk);opacity:.72"><path d="M20 12h24v14l-7 14h-10l-7-14z"/><path d="M27 46h10"/></svg></div><div style="flex:1;min-width:0">
+    <div class="beyname">Metal Needle test</div><div class="beysub">Knight Shield · 4-80 · Metal Needle</div></div></div>
+  <div class="cbody">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <span class="csub" style="margin:0">ATK 30 · DEF 180 · STA 90 · 44.8 g</span><span class="pill warn">Casual only</span></div>
+    <div class="actions"><button class="b" data-s="builder">Edit</button><button class="b addDeck">Add to deck</button><button class="b icon" title="Remove"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6M10 11v5M14 11v5"/></svg></button></div></div></div></div>
+  <div class="foot"><div class="foot-l"><span>4 Beys · 2 in decks</span><button class="help" data-tip="Complete Beyblades — blade, ratchet and bit assembled. Stock combos are added automatically when you own a whole product.">?</button></div><div class="foot-r"><!-- mockup-only --><button class="b sm demoEmpty" title="Preview the empty state">Empty state</button><button class="b sm" data-s="collection">Add stock builds</button><button class="help" data-tip="Creates a build for every complete product you own, using its original parts.">?</button></div></div>
+</div>
+
+<!-- ============ INVENTORY (loose parts) ============ -->
+<div class="screen" id="s-inventory">
+  <div class="filters">
+    <div class="find"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input placeholder="Search your parts — Impact Drake, UX-11, LR…"></div>
+    <div class="chipset"><button class="chip  on">All</button><button class="chip atk ">Attack</button><button class="chip def ">Defense</button><button class="chip sta ">Stamina</button><button class="chip bal ">Balance</button></div>
+    <select class="sel"><option>All parts</option><option>Blades</option><option>Ratchets</option><option>Bits</option></select><select class="sel"><option>Sort: ATK</option><option>Sort: DEF</option><option>Sort: STA</option><option>Sort: name</option></select>
+    <button class="b" data-s="custom"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>Add part</button>
+  </div>
+  <div class="selbar">
+    <div class="slots">
+      <div class="sl"><small>Blade</small>Impact Drake</div><span class="arrow">+</span>
+      <div class="sl"><small>Ratchet</small>9-60</div><span class="arrow">+</span>
+      <div class="sl"><small>Bit</small>BX-00 Flat</div>
+    </div>
+    <span class="count">3 parts selected</span>
+    <button class="b">Deselect</button>
+    <button class="b" data-s="builder">Open in builder</button>
+    <button class="b go" data-s="decks">Add to deck…</button>
+  </div>
+  
+  <div class="emptywrap" hidden><div class="empty-state">
+      <div class="ei"><svg width="44" height="44" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="color:var(--faint);opacity:.4"><rect x="8" y="24" width="48" height="16" rx="3"/></svg></div>
+      <h4>Your inventory is empty</h4><p>Search the catalogue for the parts you own — by name or product code. Add a whole Beyblade at once, or loose parts one at a time.</p>
+      <button class="b go" data-s="inventory">Add to your inventory</button>
+    </div></div>
+  <div class="grid"><div class="card identity picked"><div class="thumb"><button class="ck on" title="Selected"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l6 6L20 6"/></svg></button><span class="badge" style="color:var(--atk)">Attack</span><svg width="58" height="58" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color:var(--atk);opacity:.72"><circle cx="32" cy="32" r="23"/><circle cx="32" cy="32" r="10"/><path d="M32 9 L38 20 M55 32 L44 36 M32 55 L26 44 M9 32 L20 28"/></svg></div><div class="cbody"><div class="cname">Impact Drake</div><div class="csub">UX-11 · right · 38.8 g</div><div class="bars"><div class="bar"><span>ATK</span><div class="track"><div class="fill" style="width:88%;background:var(--atk)"></div></div></div><div class="bar"><span>DEF</span><div class="track"><div class="fill" style="width:29%;background:var(--def)"></div></div></div><div class="bar"><span>STA</span><div class="track"><div class="fill" style="width:12%;background:var(--sta)"></div></div></div></div><div class="actions"><button class="b own set">Owned</button><div class="qty"><button>−</button><i>2</i><button>+</button></div><button class="b icon" title="Remove"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6M10 11v5M14 11v5"/></svg></button></div></div></div><div class="card identity"><div class="thumb"><button class="ck" title="Select"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l6 6L20 6"/></svg></button><span class="badge" style="color:var(--atk)">Attack</span><svg width="58" height="58" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color:var(--atk);opacity:.72"><circle cx="32" cy="32" r="23"/><circle cx="32" cy="32" r="10"/><path d="M32 9 L38 20 M55 32 L44 36 M32 55 L26 44 M9 32 L20 28"/></svg></div><div class="cbody"><div class="cname">Cobalt Dragoon</div><div class="csub">BX-34 · <span style="color:var(--info)">left</span> · 37.8 g</div><div class="bars"><div class="bar"><span>ATK</span><div class="track"><div class="fill" style="width:70%;background:var(--atk)"></div></div></div><div class="bar"><span>DEF</span><div class="track"><div class="fill" style="width:18%;background:var(--def)"></div></div></div><div class="bar"><span>STA</span><div class="track"><div class="fill" style="width:29%;background:var(--sta)"></div></div></div></div><div class="actions"><button class="b own set">Owned</button><div class="qty"><button>−</button><i>1</i><button>+</button></div><button class="b icon" title="Remove"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6M10 11v5M14 11v5"/></svg></button></div></div></div><div class="card picked"><div class="thumb"><button class="ck on" title="Selected"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l6 6L20 6"/></svg></button><span class="badge" style="color:var(--bal)">Custom</span><svg width="58" height="58" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color:var(--bal);opacity:.72"><path d="M20 12h24v14l-7 14h-10l-7-14z"/><path d="M27 46h10"/></svg></div><div class="cbody"><div class="cname">BX-00 Flat</div><div class="csub"><span style="color:var(--bal)">Custom · prize variant</span></div><div class="bars"><div class="bar"><span>ATK</span><div class="track"><div class="fill" style="width:66%;background:var(--atk)"></div></div></div><div class="bar"><span>DEF</span><div class="track"><div class="fill" style="width:8%;background:var(--def)"></div></div></div><div class="bar"><span>STA</span><div class="track"><div class="fill" style="width:24%;background:var(--sta)"></div></div></div></div><div class="actions"><button class="b own set">Owned</button><div class="qty"><button>−</button><i>1</i><button>+</button></div><button class="b icon" title="Remove"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6M10 11v5M14 11v5"/></svg></button></div></div></div><div class="card"><div class="thumb"><button class="ck" title="Select"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l6 6L20 6"/></svg></button><svg width="58" height="58" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color:var(--dim);opacity:.72"><rect x="8" y="24" width="48" height="16" rx="3"/><path d="M20 24v16 M32 24v16 M44 24v16"/></svg></div><div class="cbody"><div class="cname">3-60</div><div class="csub">3 sides · 6.0 mm · 6.2 g</div><div class="bars"><div class="bar"><span>ATK</span><div class="track"><div class="fill" style="width:30%;background:var(--atk)"></div></div></div><div class="bar"><span>DEF</span><div class="track"><div class="fill" style="width:24%;background:var(--def)"></div></div></div><div class="bar"><span>STA</span><div class="track"><div class="fill" style="width:20%;background:var(--sta)"></div></div></div></div><div class="actions"><button class="b own set">Owned</button><div class="qty"><button>−</button><i>3</i><button>+</button></div><button class="b icon" title="Remove"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6M10 11v5M14 11v5"/></svg></button></div></div></div><div class="card"><div class="thumb"><button class="ck" title="Select"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l6 6L20 6"/></svg></button><span class="badge" style="color:var(--atk)">Attack</span><svg width="58" height="58" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color:var(--atk);opacity:.72"><path d="M20 12h24v14l-7 14h-10l-7-14z"/><path d="M27 46h10"/></svg></div><div class="cbody"><div class="cname">Low Rush</div><div class="csub">LR · gear 10 · 1.9 g</div><div class="bars"><div class="bar"><span>ATK</span><div class="track"><div class="fill" style="width:75%;background:var(--atk)"></div></div></div><div class="bar"><span>DSH</span><div class="track"><div class="fill" style="width:70%;background:var(--bal)"></div></div></div><div class="bar"><span>STA</span><div class="track"><div class="fill" style="width:18%;background:var(--sta)"></div></div></div></div><div class="actions"><button class="b own set">Owned</button><div class="qty"><button>−</button><i>1</i><button>+</button></div><button class="b icon" title="Remove"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6M10 11v5M14 11v5"/></svg></button></div></div></div><div class="card picked"><div class="thumb"><button class="ck on" title="Selected"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l6 6L20 6"/></svg></button><svg width="58" height="58" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color:var(--dim);opacity:.72"><rect x="8" y="24" width="48" height="16" rx="3"/><path d="M20 24v16 M32 24v16 M44 24v16"/></svg></div><div class="cbody"><div class="cname">9-60</div><div class="csub">9 sides · 6.0 mm · 6.4 g</div><div class="bars"><div class="bar"><span>ATK</span><div class="track"><div class="fill" style="width:26%;background:var(--atk)"></div></div></div><div class="bar"><span>DEF</span><div class="track"><div class="fill" style="width:30%;background:var(--def)"></div></div></div><div class="bar"><span>STA</span><div class="track"><div class="fill" style="width:22%;background:var(--sta)"></div></div></div></div><div class="actions"><button class="b own set">Owned</button><div class="qty"><button>−</button><i>2</i><button>+</button></div><button class="b icon" title="Remove"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6M10 11v5M14 11v5"/></svg></button></div></div></div><div class="card attn"><div class="thumb"><button class="ck" title="Select"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l6 6L20 6"/></svg></button><span class="badge" style="color:var(--warn)">WBO ban</span><svg width="58" height="58" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color:var(--warn);opacity:.72"><path d="M20 12h24v14l-7 14h-10l-7-14z"/><path d="M27 46h10"/></svg></div><div class="cbody"><div class="cname">Metal Needle</div><div class="csub"><span style="color:var(--warn)">MN · banned in WBO play</span></div><div class="bars"><div class="bar"><span>DEF</span><div class="track"><div class="fill" style="width:95%;background:var(--def)"></div></div></div><div class="bar"><span>STA</span><div class="track"><div class="fill" style="width:50%;background:var(--sta)"></div></div></div></div><div class="actions"><button class="b own set">Owned</button><div class="qty"><button>−</button><i>1</i><button>+</button></div><button class="b icon" title="Remove"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6M10 11v5M14 11v5"/></svg></button></div></div></div><div class="card"><div class="thumb"><button class="ck" title="Select"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l6 6L20 6"/></svg></button><span class="badge" style="color:var(--sta)">Stamina</span><svg width="58" height="58" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color:var(--sta);opacity:.72"><path d="M20 12h24v14l-7 14h-10l-7-14z"/><path d="M27 46h10"/></svg></div><div class="cbody"><div class="cname">Ball</div><div class="csub">B · gear 6 · 2.1 g</div><div class="bars"><div class="bar"><span>STA</span><div class="track"><div class="fill" style="width:80%;background:var(--sta)"></div></div></div><div class="bar"><span>DEF</span><div class="track"><div class="fill" style="width:40%;background:var(--def)"></div></div></div><div class="bar"><span>ATK</span><div class="track"><div class="fill" style="width:18%;background:var(--atk)"></div></div></div></div><div class="actions"><button class="b own set">Owned</button><div class="qty"><button>−</button><i>1</i><button>+</button></div><button class="b icon" title="Remove"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6M10 11v5M14 11v5"/></svg></button></div></div></div></div>
+  <div class="foot"><div class="foot-l"><span>Showing 8 of 34 owned · 3 selected</span><button class="help" data-tip="Individual parts you own. Select a blade, ratchet and bit to assemble a Bey and add it to a deck.">?</button></div><div class="foot-r"><!-- mockup-only --><button class="b sm demoEmpty" title="Preview the empty state">Empty state</button><button class="help" data-tip="Download your inventory as JSON or CSV.">?</button></div></div>
+</div>
+
+<!-- ============ EXPLORE ============ -->
+<div class="screen" id="s-explore">
+  <div class="filters">
+    <div class="find"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input placeholder="Search all 146 parts" value="dran"></div>
+    <div class="chipset"><button class="chip  on">All parts</button><button class="chip  ">Blades</button><button class="chip  ">Ratchets</button><button class="chip  ">Bits</button></div>
+    <select class="sel"><option>All lines</option><option>BX</option><option>UX</option></select>
+  </div>
+  <div class="selbar">
+    <span class="count">2 selected</span>
+    <div class="slots"></div>
+    <button class="b">Deselect</button>
+    <button class="b go">Mark as owned</button>
+  </div>
+  <div class="grid"><div class="card picked"><div class="thumb"><button class="ck on" title="Selected"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l6 6L20 6"/></svg></button><span class="badge" style="color:var(--atk)">Attack</span><svg width="58" height="58" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color:var(--atk);opacity:.72"><circle cx="32" cy="32" r="23"/><circle cx="32" cy="32" r="10"/><path d="M32 9 L38 20 M55 32 L44 36 M32 55 L26 44 M9 32 L20 28"/></svg></div><div class="cbody"><div class="cname">Dran Buster</div><div class="csub">BX-27 · right · 39.1 g</div><div class="bars"><div class="bar"><span>ATK</span><div class="track"><div class="fill" style="width:92%;background:var(--atk)"></div></div></div><div class="bar"><span>DEF</span><div class="track"><div class="fill" style="width:22%;background:var(--def)"></div></div></div><div class="bar"><span>STA</span><div class="track"><div class="fill" style="width:16%;background:var(--sta)"></div></div></div></div><div class="actions"><button class="b own">Own</button></div></div></div><div class="card picked"><div class="thumb"><button class="ck on" title="Selected"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l6 6L20 6"/></svg></button><span class="badge" style="color:var(--def)">Defense</span><svg width="58" height="58" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color:var(--def);opacity:.72"><circle cx="32" cy="32" r="23"/><circle cx="32" cy="32" r="10"/><path d="M32 9 L38 20 M55 32 L44 36 M32 55 L26 44 M9 32 L20 28"/></svg></div><div class="cbody"><div class="cname">Knight Shield</div><div class="csub">BX-13 · right · 34.5 g</div><div class="bars"><div class="bar"><span>ATK</span><div class="track"><div class="fill" style="width:20%;background:var(--atk)"></div></div></div><div class="bar"><span>DEF</span><div class="track"><div class="fill" style="width:85%;background:var(--def)"></div></div></div><div class="bar"><span>STA</span><div class="track"><div class="fill" style="width:40%;background:var(--sta)"></div></div></div></div><div class="actions"><button class="b own">Own</button></div></div></div><div class="card"><div class="thumb"><button class="ck" title="Select"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l6 6L20 6"/></svg></button><span class="badge" style="color:var(--atk)">Attack</span><svg width="58" height="58" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color:var(--atk);opacity:.72"><circle cx="32" cy="32" r="23"/><circle cx="32" cy="32" r="10"/><path d="M32 9 L38 20 M55 32 L44 36 M32 55 L26 44 M9 32 L20 28"/></svg></div><div class="cbody"><div class="cname">Glory Valkyrie</div><div class="csub">UX-20 · integrated ratchet</div><div class="bars"><div class="bar"><span>ATK</span><div class="track"><div class="fill" style="width:95%;background:var(--atk)"></div></div></div><div class="bar"><span>DEF</span><div class="track"><div class="fill" style="width:25%;background:var(--def)"></div></div></div><div class="bar"><span>STA</span><div class="track"><div class="fill" style="width:20%;background:var(--sta)"></div></div></div></div><div class="actions"><button class="b own">Own</button></div></div></div><div class="card marked"><div class="thumb"><button class="ck" title="Select"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l6 6L20 6"/></svg></button><span class="badge" style="color:var(--atk)">Attack</span><svg width="58" height="58" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color:var(--atk);opacity:.72"><path d="M20 12h24v14l-7 14h-10l-7-14z"/><path d="M27 46h10"/></svg></div><div class="cbody"><div class="cname">Gear Flat</div><div class="csub">GF · gear 12 · 2.3 g</div><div class="bars"><div class="bar"><span>ATK</span><div class="track"><div class="fill" style="width:82%;background:var(--atk)"></div></div></div><div class="bar"><span>DSH</span><div class="track"><div class="fill" style="width:78%;background:var(--bal)"></div></div></div><div class="bar"><span>STA</span><div class="track"><div class="fill" style="width:14%;background:var(--sta)"></div></div></div></div><div class="actions"><button class="b own">Own</button></div></div></div><div class="card active"><div class="thumb"><button class="ck" title="Select"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l6 6L20 6"/></svg></button><span class="badge" style="color:var(--ok)">Owned</span><svg width="58" height="58" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color:var(--atk);opacity:.72"><circle cx="32" cy="32" r="23"/><circle cx="32" cy="32" r="10"/><path d="M32 9 L38 20 M55 32 L44 36 M32 55 L26 44 M9 32 L20 28"/></svg></div><div class="cbody"><div class="cname">Impact Drake</div><div class="csub">UX-11 · right · 38.8 g</div><div class="bars"><div class="bar"><span>ATK</span><div class="track"><div class="fill" style="width:88%;background:var(--atk)"></div></div></div><div class="bar"><span>DEF</span><div class="track"><div class="fill" style="width:29%;background:var(--def)"></div></div></div><div class="bar"><span>STA</span><div class="track"><div class="fill" style="width:12%;background:var(--sta)"></div></div></div></div><div class="actions"><button class="b own set">Owned</button></div></div></div><div class="card"><div class="thumb"><button class="ck" title="Select"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l6 6L20 6"/></svg></button><svg width="58" height="58" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color:var(--dim);opacity:.72"><rect x="8" y="24" width="48" height="16" rx="3"/><path d="M20 24v16 M32 24v16 M44 24v16"/></svg></div><div class="cbody"><div class="cname">4-80</div><div class="csub">4 sides · 8.0 mm · 6.9 g</div><div class="bars"><div class="bar"><span>ATK</span><div class="track"><div class="fill" style="width:22%;background:var(--atk)"></div></div></div><div class="bar"><span>DEF</span><div class="track"><div class="fill" style="width:34%;background:var(--def)"></div></div></div><div class="bar"><span>STA</span><div class="track"><div class="fill" style="width:30%;background:var(--sta)"></div></div></div></div><div class="actions"><button class="b own">Own</button></div></div></div><div class="card"><div class="thumb"><button class="ck" title="Select"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l6 6L20 6"/></svg></button><span class="badge" style="color:var(--def)">Defense</span><svg width="58" height="58" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color:var(--def);opacity:.72"><path d="M20 12h24v14l-7 14h-10l-7-14z"/><path d="M27 46h10"/></svg></div><div class="cbody"><div class="cname">High Needle</div><div class="csub">HN · gear 8 · 1.7 g</div><div class="bars"><div class="bar"><span>DEF</span><div class="track"><div class="fill" style="width:88%;background:var(--def)"></div></div></div><div class="bar"><span>STA</span><div class="track"><div class="fill" style="width:56%;background:var(--sta)"></div></div></div><div class="bar"><span>ATK</span><div class="track"><div class="fill" style="width:10%;background:var(--atk)"></div></div></div></div><div class="actions"><button class="b own">Own</button></div></div></div><div class="card"><div class="thumb"><button class="ck" title="Select"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l6 6L20 6"/></svg></button><span class="badge" style="color:var(--bal)">Balance</span><svg width="58" height="58" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color:var(--bal);opacity:.72"><circle cx="32" cy="32" r="23"/><circle cx="32" cy="32" r="10"/><path d="M32 9 L38 20 M55 32 L44 36 M32 55 L26 44 M9 32 L20 28"/></svg></div><div class="cbody"><div class="cname">Scorpio Spear</div><div class="csub">UX-14 · mode change</div><div class="bars"><div class="bar"><span>ATK</span><div class="track"><div class="fill" style="width:25%;background:var(--atk)"></div></div></div><div class="bar"><span>DEF</span><div class="track"><div class="fill" style="width:55%;background:var(--def)"></div></div></div><div class="bar"><span>STA</span><div class="track"><div class="fill" style="width:30%;background:var(--sta)"></div></div></div></div><div class="actions"><button class="b own">Own</button></div></div></div></div>
+  <div class="foot"><div class="foot-l"><span>146 parts · 34 owned</span><button class="help" data-tip="Everything in the catalogue. Filter by part class, or search.">?</button></div><div class="foot-r"></div></div>
+</div>
+
+<!-- ============ CUSTOM PART ============ -->
+<div class="screen" id="s-custom">
+  <div class="form">
+    <div class="eyebrow">Add a custom part</div>
+    <div class="note">For parts the catalogue doesn't have — prize releases, regional exclusives, anything new.
+      It stays in your inventory only and won't be added to the shared catalogue.</div>
+    <div class="field"><label>Part name</label><input value="BX-00 Flat">
+      <div class="hint">However you'd write it. Both naming styles work — "UX-11 Impact Drake" or "Impact Drake".</div></div>
+    <div class="field"><label>Part class</label><select class="sel" style="width:100%;height:34px"><option>Bit</option><option>Blade</option><option>Ratchet</option></select></div>
+    <div class="field"><label>Type</label><select class="sel" style="width:100%;height:34px"><option>Attack</option><option>Defense</option><option>Stamina</option><option>Balance</option><option>None</option></select></div>
+    <div class="field"><label>Stats — leave blank if you don't know</label>
+      <div class="trio"><input placeholder="ATK" value="45"><input placeholder="DEF" value="5"><input placeholder="STA" value="15"></div>
+      <div class="hint">Unknown stats are treated as average when scoring, and the recommendation says so.</div></div>
+    <div class="field"><label>Image</label>
+      <div style="display:flex;align-items:center;gap:12px;padding:12px;border:1px solid var(--line);border-radius:3px;background:var(--s1)">
+        <svg width="40" height="40" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color:var(--atk);opacity:.72"><path d="M20 12h24v14l-7 14h-10l-7-14z"/><path d="M27 46h10"/></svg><div style="font-size:12.5px;color:var(--dim);line-height:1.55">
+        A coloured placeholder is used, tinted by part type.<br><span style="color:var(--faint)">Photo upload is coming later.</span></div></div></div>
+    
+    <div class="btnrow">
+      <button class="b" data-s="inventory">Cancel</button>
+      
+      <button class="b go" data-s="inventory">Add to inventory</button>
+    </div>
+  </div>
+  <div class="foot"><div class="foot-l"><span>Custom parts are yours alone</span><button class="help" data-tip="They work in builds and decks, but are never added to the shared catalogue.">?</button></div><div class="foot-r"><!-- mockup-only --><button class="b sm demoEmpty" title="Preview the empty state">Empty state</button><span>146 catalogue parts</span><button class="help" data-tip="The catalogue covers every BX and UX part.">?</button></div></div>
+</div>
+
+<!-- ============ ACCOUNT — USER ============ -->
+<div class="screen" id="s-account">
+  <div class="acct">
+    <div class="aside"><a class=""><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>Profile</a><a class=""><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg>Security</a><a class="on"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>Plan</a><a class="" data-s="admin"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4v5c0 5-3.4 8.3-8 9-4.6-.7-8-4-8-9V7z"/><path d="M9 12l2 2 4-4"/></svg>Administration</a></div>
+    <div class="amain">
+      <div class="panel"><div class="ph2"><h4>Your plan</h4><span class="grow"></span>
+        <span class="badge2" style="color:var(--faint)">Free</span></div>
+        <div class="plans"><div class="planbox planbox-free"><div class="plantitle">Free</div><div class="planprice">$0<span> / forever</span></div><ul class="planlist"><li><span>&#10003;</span>Full parts catalogue</li><li><span>&#10003;</span>Unlimited inventory</li><li><span>&#10003;</span><b>3 decks</b></li><li><span>&#10003;</span>WBO deck validation</li></ul><button class="b " disabled style="opacity:.5">Current plan</button></div><div class="planbox planbox-pro"><div class="plantitle">Beybox Pro</div><div class="planprice">$10<span> one-time</span></div><ul class="planlist"><li><span>&#10003;</span>Everything in Free</li><li><span>&#10003;</span><b>Unlimited decks</b></li></ul><button class="b go">Upgrade to Pro</button></div></div>
+        <div class="pb" style="border-top:1px solid var(--line);padding-top:13px">
+          <div style="font-size:12.5px;color:var(--dim);line-height:1.6">
+            You're using <b style="color:var(--text)">3 of 3 decks</b>. Upgrading removes the limit for good —
+it's a one-time purchase, not a subscription.</div></div>
+      </div>
+      <div class="panel"><div class="ph2"><h4>Profile</h4><span class="grow"></span>
+        <button class="b sm">Save changes</button></div>
+        <div class="pb">
+          <div class="frow"><label>Display name</label><input value="Jonathan"></div>
+          <div class="frow"><label>Email</label><input value="jonathan@example.com"></div>
+          <div class="frow"><label>Home region</label><select><option>Canada</option><option>United States</option><option>Japan</option></select></div>
+          <div class="frow"><label>Default format</label><select><option>WBO Standard</option><option>Casual</option></select></div>
+        </div></div>
+      
+    </div>
+  </div>
+  <div class="foot"><div class="foot-l"><span>Signed in as jonathan@example.com</span>
+    <button class="help" data-tip="Changing your email requires confirming the new address.">?</button></div>
+    <div class="foot-r"><button class="b sm">Log out everywhere</button>
+    <button class="help" data-tip="Ends every active session, including other devices.">?</button></div></div>
+</div>
+
+<!-- ============ ACCOUNT — ADMIN ============ -->
+<div class="screen" id="s-admin">
+  <div class="acct">
+    <div class="aside"><a class=""><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>Profile</a><a class=""><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg>Security</a><a class=""><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>Plan</a><div class="sec">Administration</div><a class="on"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2 20c0-3.9 3.1-6 7-6s7 2.1 7 6"/><path d="M17 8.5a3 3 0 000-1M18 20c0-2.6-1-4.4-2.5-5.4"/></svg>Users</a><a class=""><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.7 4 3 9 3s9-1.3 9-3V5"/><path d="M3 12c0 1.7 4 3 9 3s9-1.3 9-3"/></svg>Catalogue</a></div>
+    <div class="amain">
+      <div class="panel"><div class="stats3">
+        <div><div class="n">218</div><div class="l">Users</div></div>
+        <div><div class="n">31</div><div class="l">Pro subscribers</div></div>
+        <div><div class="n">146</div><div class="l">Catalogue parts</div></div>
+        
+      </div></div>
+
+      <div class="panel"><div class="ph2"><h4>Users</h4><span class="grow"></span>
+        <div class="find" style="flex:0 0 220px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input placeholder="Search users"></div>
+        </div>
+        <table class="utable">
+          <tr><th>User</th><th>Role</th><th>Plan</th><th>Parts</th><th>Joined</th><th></th></tr>
+          <tr><td><b>jonathan@example.com</b><br><span style="font-size:11.5px">Jonathan</span></td>
+            <td><span class="badge2" style="color:var(--accent)">Superadmin</span></td>
+            <td><span class="badge2" style="color:var(--ok)">Pro</span></td><td>34</td><td>12 Jun 2026</td>
+            <td></td></tr>
+          <tr><td><b>kaito@example.com</b><br><span style="font-size:11.5px">Kaito</span></td>
+            <td><span class="badge2" style="color:var(--faint)">User</span></td>
+            <td><span class="badge2" style="color:var(--ok)">Pro</span></td><td>112</td><td>3 Jul 2026</td>
+            <td></td></tr>
+          <tr><td><b>mia@example.com</b><br><span style="font-size:11.5px">Mia</span></td>
+            <td><span class="badge2" style="color:var(--faint)">User</span></td>
+            <td><span class="badge2" style="color:var(--faint)">Free</span></td><td>18</td><td>21 Jul 2026</td>
+            <td></td></tr>
+          <tr><td><b>rin@example.com</b><br><span style="font-size:11.5px">Rin</span></td>
+            <td><span class="badge2" style="color:var(--faint)">User</span></td>
+            <td><span class="badge2" style="color:var(--faint)">Free</span></td><td>67</td><td>28 Jun 2026</td>
+            <td></td></tr>
+        </table></div>
+
+      <div class="panel"><div class="ph2"><h4>Catalogue</h4><span class="grow"></span>
+        <button class="b sm" id="manageParts">Manage parts</button><button class="b sm">Add part</button></div>
+        <div class="pb"><div class="frow"><label>Parts</label>
+          <div class="val">146 canonical · 603 variants
+            <small>Seeded once from parts.json — the app never re-fetches</small></div></div>
+          <div class="frow"><label>Source</label><div class="val">Community catalogue snapshot
+            <small>Imported once. The running app never fetches from an external source.</small></div></div>
+          <div class="frow"><label>Scope</label><div class="val">BX and UX only
+            <small>CX parts are collected but not published to users yet.</small></div></div></div></div>
+
+      
+    </div>
+  </div>
+  <div class="foot"><div class="foot-l"><span>Superadmin · 218 users</span>
+    <button class="help" data-tip="Roles are enforced by row-level security in the database, not by hiding buttons.">?</button></div>
+    <div class="foot-r">
+    <button class="help" data-tip="Every admin action is recorded with the account that performed it.">?</button></div></div>
+</div>
+
+<!-- ============ LANDING ============ -->
+<div class="screen on" id="s-landing">
+  <div class="hero">
+    <div class="herovid" aria-hidden="true">
+      <video id="heroVid" src="public/assets/hero.mp4" autoplay muted defaultMuted loop playsinline preload="auto" poster="public/assets/hero-poster.jpg">
+        
+      </video>
+      
+    </div>
+    <div class="herologo" role="img" aria-label="Beybox"></div><div class="herowm">BEYBOX</div>
+    <h1>Three Beys. No repeated parts.<br><em>One legal deck.</em></h1>
+    <p>Beybox tracks what you actually own and builds WBO-legal decks from it — then tells you which part to buy next, and why.</p>
+    <div class="herobtn"><button class="b go" data-s="decks">Create an account</button>
+      <button class="b accent" data-s="decks">Log in</button></div>
+  </div>
+  <div class="shots">
+    <div class="deckwrap" id="deckwrap">
+      <figure class="shot" data-pos="0" data-i="0"><div class="mini">
+  <div class="bar"><i></i><i></i><i></i><b>Decks</b></div>
+  <div class="mnav"><span>Decks</span><span class="dim">Collection</span><span class="dim">Builder</span><span class="dim">Inventory</span><span class="dim">Explore</span><span class="grow"></span><span class="tagp">Pro</span></div>
+  <div class="mfilt"><span class="mfind">Search decks by name</span><span class="mpil">All decks</span><span class="mpil">Sort: recent</span><span class="grow"></span><span class="mpil go">+ New deck</span></div>
+  <div class="in"><div class="mrow" style="align-items:stretch">
+    <div class="mcard ok"><div class="mt">Locals — June</div>
+      <span class="mp">Impact Drake 9-60LR</span><span class="mp">Wizard Rod 3-60B</span><span class="mp">Knight Shield 4-80HN</span>
+      <div class="mcov"><i class="on" style="--c:var(--atk)">ATK</i><i class="on" style="--c:var(--def)">DEF</i><i class="on" style="--c:var(--sta)">STA</i><i>BAL</i></div>
+      <div class="mtag ok">WBO legal</div></div>
+    <div class="mcard warn"><div class="mt">All-attack test</div>
+      <span class="mp">Impact Drake</span><span class="mp w">3-60</span><br><span class="mp">Cobalt Dragoon</span><span class="mp w">3-60</span>
+      <div class="mwarn">3-60 used twice — builds 1 and 2</div>
+      <div class="mtag warn">Not legal</div></div>
+    <div class="mcard"><div class="mt">Casual — MN test</div>
+      <span class="mp">Cobalt Dragoon 2-60C</span><span class="mp w">Metal Needle</span><span class="mp">BX-00 Flat</span>
+      <div class="mwarn">Banned in WBO play. Fine casually.</div>
+      <div class="mtag warn">Casual only</div></div>
+  </div></div>
+</div></figure>
+      <figure class="shot" data-pos="1" data-i="1"><div class="mini"><div class="bar"><i></i><i></i><i></i><b>Builder</b></div><div class="mnav"><span class="dim">Decks</span><span class="dim">Collection</span><span>Builder</span><span class="dim">Inventory</span><span class="dim">Explore</span><span class="grow"></span><span class="tagp">Pro</span></div>
+<div class="in" style="flex-direction:row;gap:9px;align-items:stretch">
+  <div style="flex:0 0 26%;display:flex;flex-direction:column;gap:5px;justify-content:center">
+    <div class="mcard ok" style="padding:6px"><div class="mt" style="margin-bottom:4px">01</div>
+      <span class="mp">Impact Drake</span><span class="mp">9-60</span><span class="mp">LR</span></div>
+    <div class="mcard ok" style="padding:6px"><div class="mt" style="margin-bottom:4px">02</div>
+      <span class="mp">Wizard Rod</span><span class="mp">3-60</span><span class="mp">B</span></div>
+    <div class="mcard" style="padding:6px"><div class="mt" style="margin-bottom:4px">03</div>
+      <span class="mp">Knight Shield</span><span class="mp">4-80</span></div>
+  </div>
+  <div style="flex:1;display:flex;align-items:center;justify-content:center">
+    <div class="mstack" style="padding:0;flex:0">
+      <div class="pz" style="height:34px"><svg width="22" height="22" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" style="color:var(--atk);opacity:.85"><circle cx="32" cy="32" r="23"/><circle cx="32" cy="32" r="10"/></svg></div>
+      <div class="ln" style="height:16px"></div>
+      <div class="pz" style="height:19px"><svg width="20" height="9" viewBox="0 0 56 26" fill="none" stroke="currentColor" stroke-width="2.4" style="color:var(--dim);opacity:.85"><rect x="8" y="24" width="48" height="16" rx="3"/></svg></div>
+      <div class="ln" style="height:12px"></div>
+      <div class="pz" style="height:24px"><svg width="15" height="15" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" style="color:var(--atk);opacity:.85"><path d="M20 12h24v14l-7 14h-10l-7-14z"/></svg></div></div>
+  </div>
+  <div style="flex:0 0 29%;display:flex;flex-direction:column;gap:4px;justify-content:center">
+    <div class="mb"><i style="width:86%;background:var(--atk)"></i></div>
+    <div class="mb"><i style="width:24%;background:var(--def)"></i></div>
+    <div class="mb"><i style="width:20%;background:var(--sta)"></i></div>
+    <div class="mb"><i style="width:70%;background:var(--bal)"></i></div>
+    <div class="mcard" style="border-color:var(--accent);padding:6px;margin-top:4px">
+      <div class="mt" style="color:var(--accent);margin-bottom:3px">Meta rec</div>
+      <span class="mp">Gear Flat</span><span class="mp" style="border:1px solid var(--ok);color:var(--ok)">+18 ATK</span></div>
+    <div class="mcard" style="padding:6px"><div class="mt" style="margin-bottom:3px">Flat · 91</div>
+      <div class="mb" style="margin:0"><i style="width:91%;background:var(--dim)"></i></div></div>
+  </div>
+</div></div></figure>
+      <figure class="shot" data-pos="2" data-i="2"><div class="mini"><div class="bar"><i></i><i></i><i></i><b>Inventory</b></div><div class="mnav"><span class="dim">Decks</span><span class="dim">Collection</span><span class="dim">Builder</span><span>Inventory</span><span class="dim">Explore</span><span class="grow"></span><span class="tagp">Pro</span></div>
+<div class="in"><div class="mgrid"><div class="mg ok"><svg width="15" height="15" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" style="color:var(--atk);opacity:.8"><circle cx="32" cy="32" r="23"/><circle cx="32" cy="32" r="10"/></svg><div class="mb" style="width:100%"><i style="width:52%;background:var(--atk)"></i></div></div><div class="mg "><svg width="15" height="15" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" style="color:var(--dim);opacity:.8"><rect x="8" y="24" width="48" height="16" rx="3"/></svg><div class="mb" style="width:100%"><i style="width:61%;background:var(--dim)"></i></div></div><div class="mg ok"><svg width="15" height="15" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" style="color:var(--atk);opacity:.8"><path d="M20 12h24v14l-7 14h-10l-7-14z"/></svg><div class="mb" style="width:100%"><i style="width:88%;background:var(--atk)"></i></div></div><div class="mg info"><svg width="15" height="15" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" style="color:var(--sta);opacity:.8"><circle cx="32" cy="32" r="23"/><circle cx="32" cy="32" r="10"/></svg><div class="mb" style="width:100%"><i style="width:44%;background:var(--sta)"></i></div></div><div class="mg "><svg width="15" height="15" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" style="color:var(--def);opacity:.8"><path d="M20 12h24v14l-7 14h-10l-7-14z"/></svg><div class="mb" style="width:100%"><i style="width:48%;background:var(--def)"></i></div></div><div class="mg ok"><svg width="15" height="15" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" style="color:var(--dim);opacity:.8"><rect x="8" y="24" width="48" height="16" rx="3"/></svg><div class="mb" style="width:100%"><i style="width:73%;background:var(--dim)"></i></div></div><div class="mg "><svg width="15" height="15" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" style="color:var(--bal);opacity:.8"><circle cx="32" cy="32" r="23"/><circle cx="32" cy="32" r="10"/></svg><div class="mb" style="width:100%"><i style="width:63%;background:var(--bal)"></i></div></div><div class="mg ok"><svg width="15" height="15" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" style="color:var(--sta);opacity:.8"><path d="M20 12h24v14l-7 14h-10l-7-14z"/></svg><div class="mb" style="width:100%"><i style="width:88%;background:var(--sta)"></i></div></div><div class="mg ok"><svg width="15" height="15" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" style="color:var(--def);opacity:.8"><circle cx="32" cy="32" r="23"/><circle cx="32" cy="32" r="10"/></svg><div class="mb" style="width:100%"><i style="width:72%;background:var(--def)"></i></div></div><div class="mg "><svg width="15" height="15" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" style="color:var(--dim);opacity:.8"><rect x="8" y="24" width="48" height="16" rx="3"/></svg><div class="mb" style="width:100%"><i style="width:48%;background:var(--dim)"></i></div></div><div class="mg info"><svg width="15" height="15" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" style="color:var(--atk);opacity:.8"><path d="M20 12h24v14l-7 14h-10l-7-14z"/></svg><div class="mb" style="width:100%"><i style="width:66%;background:var(--atk)"></i></div></div><div class="mg ok"><svg width="15" height="15" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" style="color:var(--bal);opacity:.8"><circle cx="32" cy="32" r="23"/><circle cx="32" cy="32" r="10"/></svg><div class="mb" style="width:100%"><i style="width:55%;background:var(--bal)"></i></div></div></div></div></div></figure>
+    </div>
+    <div class="shotside">
+      <div class="copywrap">
+        <div class="scopy on" data-i="0">
+          <span class="ctag">Decks</span>
+          <h3>Three Beys.<br>Checked as you build.</h3>
+          <p>Repeated parts are flagged in both places they appear, banned bits are called out, and type coverage shows at a glance. Nothing is ever blocked.</p>
+        </div>
+        <div class="scopy" data-i="1">
+          <span class="ctag">Builder</span>
+          <h3>Height you<br>can actually see.</h3>
+          <p>A 3-60 and a 4-80 sit two millimetres apart on paper and behave like different Beyblades. Swap one and the stack grows by the real measurement.</p>
+        </div>
+        <div class="scopy" data-i="2">
+          <span class="ctag">Inventory</span>
+          <h3>Every part,<br>and how many.</h3>
+          <p>Add a whole Beyblade by its product code or loose parts one at a time, with quantities. Anything the catalogue is missing, you can add yourself.</p>
+        </div>
+      </div>
+      <div class="shotnav">
+        <button class="b" id="shotPrev" aria-label="Previous"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+        <span class="pos" id="shotPos">01 / 03</span>
+        <button class="b" id="shotNext" aria-label="Next"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
+      </div>
+    </div>
+  </div>
+  <div class="feat">
+    <div><h3>Know what you own</h3><p>Every BX and UX part, with real stats and photographs. Add a whole Beyblade by its product code, or loose parts one at a time. Anything the catalogue is missing, you can add yourself.</p></div>
+    <div><h3>Know if it's tournament legal</h3><p>Every deck is checked against WBO rules as you build — repeated parts flagged in both places they appear, banned parts called out. Nothing is ever blocked. Casual play has its own rules.</p></div>
+    <div><h3>Get told what to buy</h3><p>Beybox scores every legal combination from your collection, then scores the ones you don't own yet. If something would beat your best owned part, it says so — and by how much.</p></div>
+  </div>
+  <div class="foot"><div class="foot-l"><span>Free to use · Beybox Pro unlocks the recommendation engine</span></div>
+    <div class="foot-r"><!-- mockup-only --><button class="b sm demoEmpty" title="Preview the empty state">Empty state</button><span>Unaffiliated with Takara Tomy, Hasbro, or the WBO · <a href="#" style="color:var(--faint)">Credits</a></span></div></div>
+</div>
+
+</div>
+<script>
+var r=document.documentElement;
+function show(id){
+  document.querySelectorAll('.screen').forEach(function(s){s.classList.toggle('on',s.id==='s-'+id)});
+  document.querySelectorAll('nav a').forEach(function(a){a.classList.toggle('on',a.dataset.s===id)});
+  var landing=(id==='landing');
+  var ovl=document.getElementById('intro');
+  if(ovl && !landing && !window.__introSeen){ window.__introSeen=1; ovl.hidden=false; }
+  document.getElementById('hdr').style.display=landing?'none':'flex';
+  var nav=document.getElementById('siteNav').children;
+  nav[0].classList.toggle('on',landing); nav[1].classList.toggle('on',!landing);
+  var seg=document.getElementById('authSeg');
+  seg.innerHTML = landing
+    ? '<button data-s="decks">Log in</button><button class="on" data-s="decks">Sign up</button>'
+    : '<button class="on" data-s="landing">Log out</button>';
+}
+/* One delegated listener. Handles nested icons, SVG children, and anything
+   added to the DOM later — no per-element binding to fall out of sync. */
+document.addEventListener('click',function(ev){
+  var n = ev.target;
+  while(n && n !== document){
+    if(n.dataset && n.dataset.s){ show(n.dataset.s); return; }
+    n = n.parentNode;
+  }
+});
+/* landing preview stack — click a card behind to bring it forward */
+(function(){
+  var wrap=document.getElementById('deckwrap'); if(!wrap) return;
+  var shots=[].slice.call(wrap.querySelectorAll('.shot'));
+  var caps=[].slice.call(document.querySelectorAll('.scopy'));
+  var pos=document.getElementById('shotPos');
+  var front=0, n=shots.length, timer=null;
+  if(!caps.length) console.warn('Beybox: no .scopy blocks found — copy will not change');
+  if(caps.length!==n) console.warn('Beybox: '+n+' cards but '+caps.length+' copy blocks');
+  function render(){
+    shots.forEach(function(el,k){ el.dataset.pos=(k-front+n)%n; });
+    caps.forEach(function(c,k){ c.classList.toggle('on',k===front); });
+    if(pos) pos.textContent=('0'+(front+1)).slice(-2)+' / 0'+n;
+  }
+  function go(k){ front=(k+n)%n; render(); restart(); }
+  function restart(){ clearInterval(timer); timer=setInterval(function(){ go(front+1); },6000); }
+  shots.forEach(function(el){ el.onclick=function(){ if(el.dataset.pos!=='0') go(+el.dataset.i); }; });
+  document.getElementById('shotNext').onclick=function(){ go(front+1); };
+  document.getElementById('shotPrev').onclick=function(){ go(front-1); };
+  wrap.addEventListener('mouseenter',function(){ clearInterval(timer); });
+  wrap.addEventListener('mouseleave',restart);
+  render(); restart();
+})();
+
+/* simple overlay wiring */
+[['manageparts','manageParts','manageClose'],['decklimit','newDeck','limitClose']].forEach(function(t){
+  var ovl=document.getElementById(t[0]), open=document.getElementById(t[1]), close=document.getElementById(t[2]);
+  if(!ovl) return;
+  if(open) open.onclick=function(){ ovl.hidden=false; };
+  if(close) close.onclick=function(){ ovl.hidden=true; };
+  ovl.addEventListener('click',function(e){ if(e.target===ovl) ovl.hidden=true; });
+  ovl.querySelectorAll('[data-s]').forEach(function(el){ el.addEventListener('click',function(){ ovl.hidden=true; }); });
+});
+
+
+/* add-to-deck sheet */
+(function(){
+  var ovl=document.getElementById('adddeck'); if(!ovl) return;
+  document.addEventListener('click',function(e){
+    if(e.target.closest('.addDeck')){ ovl.hidden=false; }
+  });
+  var close=document.getElementById('addDeckClose');
+  if(close) close.onclick=function(){ ovl.hidden=true; };
+  ovl.addEventListener('click',function(e){ if(e.target===ovl) ovl.hidden=true; });
+  ovl.querySelectorAll('[data-s]').forEach(function(el){ el.addEventListener('click',function(){ ovl.hidden=true; }); });
+})();
+
+/* first-run intro */
+(function(){
+  var ovl=document.getElementById('intro'); if(!ovl) return;
+  var slides=[].slice.call(ovl.querySelectorAll('.slide')), i=0;
+  var back=document.getElementById('introBack'), next=document.getElementById('introNext');
+  function render(){
+    slides.forEach(function(sl,k){ sl.hidden = k!==i; });
+    back.disabled = i===0; back.style.opacity = i===0 ? .45 : 1;
+    next.textContent = i===slides.length-1 ? "Let's go!" : 'Next';
+  }
+  next.onclick=function(){ if(i<slides.length-1){ i++; render(); } else { ovl.hidden=true; } };
+  back.onclick=function(){ if(i>0){ i--; render(); } };
+  ovl.querySelectorAll('.dots2').forEach(function(row){
+    [].slice.call(row.children).forEach(function(d,k){ d.onclick=function(){ i=k; render(); }; });
+  });
+  document.getElementById('dontshow').onclick=function(){ this.classList.toggle('on'); };
+  ovl.addEventListener('click',function(e){ if(e.target===ovl) ovl.hidden=true; });
+  render();
+})();
+(function(){
+  var bs=[].slice.call(document.querySelectorAll('.demoEmpty')); if(!bs.length) return;
+  bs.forEach(function(b){ b.onclick=function(){
+    var on=document.body.classList.toggle('demo-empty');
+    bs.forEach(function(x){ x.classList.toggle('on',on); });
+  };});
+})();
+var tl=document.getElementById('tl'),td=document.getElementById('td');
+function setTheme(t){r.setAttribute('data-theme',t);tl.classList.toggle('on',t==='light');td.classList.toggle('on',t==='dark');}
+tl.onclick=function(){setTheme('light')};td.onclick=function(){setTheme('dark')};
+/* Safari and some Firefox builds refuse autoplay unless muted is set as a property
+   before play() is called, and ignore autoplay on an initially-hidden element. */
+(function(){
+  var v=document.getElementById('heroVid'), d=document.getElementById('heroData');
+  if(!v) return;
+  v.muted=true;
+  /* Decode once into a Blob rather than handing the browser a data URI —
+     Chrome parses large data URIs on the main thread before decoding, which
+     delayed first frame by several seconds. A Blob URL streams immediately. */
+  try{
+    var raw=atob(d.textContent.trim()), n=raw.length, arr=new Uint8Array(n);
+    for(var i=0;i<n;i++) arr[i]=raw.charCodeAt(i);
+    v.src=URL.createObjectURL(new Blob([arr],{type:'video/mp4'}));
+  }catch(e){}
+  var go=function(){ var pr=v.play(); if(pr&&pr.catch) pr.catch(function(){}); };
+  v.addEventListener('loadeddata',go,{once:true});
+  go();
+  document.addEventListener('click',go,{once:true});
+})();
+var rm=window.matchMedia('(prefers-reduced-motion: reduce)').matches,tx=0,ty=0,cx=0,cy=0,raf=null;
+if(!rm){cx=window.innerWidth/2;cy=window.innerHeight*.4;tx=cx;ty=cy;
+  document.addEventListener('mousemove',function(e){tx=e.clientX;ty=e.clientY;if(!raf)raf=requestAnimationFrame(loop)});
+  function loop(){cx+=(tx-cx)*.07;cy+=(ty-cy)*.07;
+    r.style.setProperty('--mx',cx.toFixed(1)+'px');r.style.setProperty('--my',cy.toFixed(1)+'px');
+    if(Math.abs(tx-cx)>.5||Math.abs(ty-cy)>.5){raf=requestAnimationFrame(loop)}else{raf=null}}
+}
+</script>
+
+
+
+
+<!-- mockup-only --><div class="stamp">build 28 Jul 22:57 · ae1c0b3</div>
+</body></html>
